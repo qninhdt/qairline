@@ -11,5 +11,12 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxt/eslint']
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag: string) => tag === 'lord-icon'
+    }
+  },
+  plugins: ['~/plugins/lordicon.ts'],
+
+  modules: ['@nuxt/eslint', '@nuxtjs/storybook']
 })
