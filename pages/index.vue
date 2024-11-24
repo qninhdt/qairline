@@ -1,12 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AnimatedIcon from '../components/animated-icon.vue'
+</script>
 
 <template>
   <div>
-    <lord-icon
-      src="https://cdn.lordicon.com/uesshlie.json"
-      trigger="hover"
-      style="width: 250px; height: 250px"
-    >
-    </lord-icon>
+    <animated-icon id="facebook" :size="256" />
+    <animated-icon id="zoom" :size="256" />
+    <animated-icon id="x" :size="256" />
   </div>
 </template>
