@@ -24,7 +24,16 @@ const ID_TO_LORDICON_ID: Record<string, string> = {
   hanoi: 'apkaazsq',
   bangkok: 'ctljvypg',
   newyork: 'jdgkkgki',
-  paris: 'anyasfbo'
+  paris: 'anyasfbo',
+  box: 'uriapfou',
+  plate: 'uxkdjajd',
+  newspaper: 'nspjpkdg',
+  wifi: 'jezazvlx',
+  customer_service: 'bmjslskx',
+  firework: 'jbbaiwhg',
+  layer: 'jectmwqf',
+  grid: 'ervhjijl',
+  nav: 'suwzildd'
 }
 
 const iconStyle = computed(() => ({
