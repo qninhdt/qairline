@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
-  css: ['~/assets/styles/global.css'],
+  css: ['~/assets/css/tailwind.css'],
   devtools: { enabled: true },
 
   postcss: {
@@ -18,5 +18,15 @@ export default defineNuxtConfig({
   },
   plugins: ['~/plugins/lordicon.ts'],
 
-  modules: ['@nuxt/eslint', '@nuxtjs/storybook']
+  modules: [
+    '@nuxt/eslint',
+    // '@nuxtjs/storybook',
+    'shadcn-nuxt',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode'
+  ],
+  shadcn: {
+    prefix: '',
+    componentDir: './components/ui'
+  }
 })

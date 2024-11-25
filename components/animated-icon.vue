@@ -16,7 +16,15 @@ const ID_TO_LORDICON_ID: Record<string, string> = {
   circle_avatar: 'whvtbbby',
   facebook: 'lplofcfe',
   instagram: 'ewswvzmw',
-  x: 'jvodbtcr'
+  x: 'jvodbtcr',
+  logout: 'pbalszem',
+  receipt_dollar: 'dipunyii',
+  cog: 'ripbvsga',
+  vege: 'zctnxfvg',
+  hanoi: 'apkaazsq',
+  bangkok: 'ctljvypg',
+  newyork: 'jdgkkgki',
+  paris: 'anyasfbo'
 }
 
 const iconStyle = computed(() => ({
@@ -31,5 +39,11 @@ const iconSrc = computed(() => {
 </script>
 
 <template>
-  <lord-icon :src="iconSrc" trigger="hover" stroke="light" :style="iconStyle" />
+  <lord-icon
+    :src="iconSrc"
+    trigger="hover"
+    stroke="bold"
+    :style="iconStyle"
+    v-bind="$attrs"
+  ></lord-icon>
 </template>
