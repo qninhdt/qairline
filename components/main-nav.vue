@@ -8,6 +8,13 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from '../components/ui/navigation-menu'
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTrigger
+} from '../components/ui/drawer'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import AnimatedIcon from '../components/animated-icon.vue'
 
 const explore_items = [
@@ -37,86 +44,99 @@ const explore_items = [
   }
 ]
 
-const components: { title: string; href: string; description: string }[] = [
+const services = [
   {
-    title: 'Alert Dialog',
-    href: '/docs/components/alert-dialog',
-    description:
-      'A modal dialog that interrupts the user with important content and expects a response.'
+    title: 'Đặt vé',
+    href: '/services/book-ticket',
+    description: 'Đặt vé máy bay, tour du lịch.',
+    icon: 'coupon'
   },
   {
-    title: 'Hover Card',
-    href: '/docs/components/hover-card',
-    description: 'For sighted users to preview content available behind a link.'
+    title: 'Hành lý',
+    href: '/services/transport',
+    description: 'Dịch vụ vận chuyển hành lý.',
+    icon: 'box'
   },
   {
-    title: 'Progress',
-    href: '/docs/components/progress',
-    description:
-      'Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.'
+    title: 'Nhà hàng "trên không"',
+    href: '/services/restaurant',
+    description: 'Tận hưởng ẩm thực trên không.',
+    icon: 'plate'
+  },
+
+  {
+    title: 'Kết nối mạng',
+    href: '/services/network',
+    description: 'Dịch vụ kết nối mạng.',
+    icon: 'wifi'
   },
   {
-    title: 'Scroll-area',
-    href: '/docs/components/scroll-area',
-    description: 'Visually or semantically separates content.'
+    title: 'Thủ tục hải quan',
+    href: '/services/customs',
+    description: 'Hỗ trợ thủ tục hải quan.',
+    icon: 'newspaper'
   },
   {
-    title: 'Tabs',
-    href: '/docs/components/tabs',
-    description:
-      'A set of layered sections of content—known as tab panels—that are displayed one at a time.'
-  },
-  {
-    title: 'Tooltip',
-    href: '/docs/components/tooltip',
-    description:
-      'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.'
+    title: 'Dịch vụ khách hàng',
+    href: '/services/customer-service',
+    description: 'Hỗ trợ khách hàng 24/7.',
+    icon: 'customer_service'
   }
 ]
 </script>
 
 <template>
-  <NavigationMenu>
-    <NavigationMenuList>
-      <NavigationMenuItem>
-        <NavigationMenuTrigger>Khám phá</NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <ul
-            class="grid gap-3 p-6 md:w-[400px] lg:w-[600px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]"
-          >
-            <li class="row-span-4">
-              <NavigationMenuLink as-child>
-                <a
-                  id="fly-with-qairline"
-                  class="bg-blur relative flex h-full w-full select-none flex-col justify-end rounded-md from-muted/50 to-muted no-underline outline-none transition-colors focus:shadow-md"
-                  href="/"
-                >
-                  <img
-                    src="https://www.vacationstravel.com/wp-content/uploads/2024/01/AdobeStock_467994223.jpg"
-                    class="absolute inset-0 h-full w-full rounded-md object-cover"
-                    alt="Background"
+  <div>
+    <Drawer>
+      <DrawerTrigger as-child>
+        <div
+          class="fixed bottom-6 left-4 z-50 flex h-10 w-10 items-center justify-center md:hidden"
+        >
+          <div
+            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-[#27ae60]"
+          ></div>
+          <div
+            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-[#27ae60] delay-500"
+          ></div>
+          <div
+            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-[#27ae60] delay-1000"
+          ></div>
+          <div class="absolute z-20">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-[#27ae60] md:hidden"
+            >
+              <AnimatedIcon id="layer" :size="24" />
+            </div>
+          </div>
+        </div>
+      </DrawerTrigger>
+      <DrawerContent>
+        <ScrollArea class="h-[50vh]">
+          <DrawerHeader>
+            <a
+              id="fly-with-qairline"
+              class="bg-blur relative flex h-full w-full select-none flex-col justify-end rounded-md from-muted/50 to-muted no-underline outline-none transition-colors"
+              href="/"
+            >
+              <img
+                src="https://www.vacationstravel.com/wp-content/uploads/2024/01/AdobeStock_467994223.jpg"
+                class="absolute inset-0 h-full w-full rounded-md object-cover"
+                alt="Background"
+              />
+              <div class="relative bg-white bg-opacity-75 px-4 pb-2">
+                <div class="relative mb-2 mt-4 text-lg font-bold">
+                  Bay cùng QAirline
+                  <AnimatedIcon
+                    id="vege"
+                    target="#fly-with-qairline"
+                    :size="24"
                   />
-                  <div
-                    class="absolute inset-0 rounded-md bg-black opacity-25"
-                  ></div>
-                  <div class="relative bg-white bg-opacity-75 px-4 pb-4">
-                    <div class="relative mb-2 mt-4 text-lg font-bold">
-                      Bay cùng QAirline
-                      <AnimatedIcon
-                        id="vege"
-                        target="#fly-with-qairline"
-                        :size="24"
-                      />
-                    </div>
-                    <p
-                      class="relative text-sm leading-tight text-muted-foreground"
-                    >
-                      Trải nghiệm dịch vụ hàng không thân thiện với môi trường.
-                    </p>
-                  </div>
-                </a>
-              </NavigationMenuLink>
-            </li>
+                </div>
+              </div>
+            </a>
+          </DrawerHeader>
+          <Separator label="Khám phá" />
+          <ul class="p-4">
             <li v-for="item in explore_items" :key="item.title">
               <NavigationMenuLink as-child>
                 <a
@@ -125,7 +145,7 @@ const components: { title: string; href: string; description: string }[] = [
                 >
                   <AnimatedIcon
                     :id="item.icon"
-                    :size="24"
+                    :size="32"
                     class="text-accent"
                     target="a"
                   />
@@ -143,42 +163,161 @@ const components: { title: string; href: string; description: string }[] = [
               </NavigationMenuLink>
             </li>
           </ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuTrigger>Dịch vụ</NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <ul
-            class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]"
-          >
-            <li v-for="component in components" :key="component.title">
+          <Separator label="Dịch vụ" />
+          <ul class="p-4">
+            <li v-for="service in services" :key="service.title">
               <NavigationMenuLink as-child>
                 <a
-                  :href="component.href"
-                  class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  :href="service.href"
+                  class="flex select-none items-center space-x-2 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                 >
-                  <div class="text-sm font-medium leading-none">
-                    {{ component.title }}
+                  <AnimatedIcon
+                    :id="service.icon"
+                    :size="32"
+                    class="text-accent"
+                    target="a"
+                  />
+                  <div class="flex flex-col">
+                    <div class="text-sm font-medium leading-none">
+                      {{ service.title }}
+                    </div>
+                    <p
+                      class="line-clamp-2 text-sm leading-snug text-muted-foreground"
+                    >
+                      {{ service.description }}
+                    </p>
                   </div>
-                  <p
-                    class="line-clamp-2 text-sm leading-snug text-muted-foreground"
-                  >
-                    {{ component.description }}
-                  </p>
                 </a>
               </NavigationMenuLink>
             </li>
           </ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink
-          href="/docs/introduction"
-          :class="navigationMenuTriggerStyle()"
-        >
-          Giới thiệu
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-    </NavigationMenuList>
-  </NavigationMenu>
+          <Separator />
+          <ul class="p-4">
+            <li>
+              <NavigationMenuLink
+                href="/docs/introduction"
+                :class="navigationMenuTriggerStyle()"
+              >
+                Giới thiệu
+              </NavigationMenuLink>
+            </li>
+          </ul>
+        </ScrollArea>
+      </DrawerContent>
+    </Drawer>
+    <NavigationMenu class="hidden md:block">
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Khám phá</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul
+              class="grid gap-3 p-6 md:w-[400px] lg:w-[600px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]"
+            >
+              <li class="row-span-4">
+                <NavigationMenuLink as-child>
+                  <a
+                    id="fly-with-qairline"
+                    class="bg-blur relative flex h-full w-full select-none flex-col justify-end rounded-md from-muted/50 to-muted no-underline outline-none transition-colors focus:shadow-md"
+                    href="/"
+                  >
+                    <img
+                      src="https://www.vacationstravel.com/wp-content/uploads/2024/01/AdobeStock_467994223.jpg"
+                      class="absolute inset-0 h-full w-full rounded-md object-cover"
+                      alt="Background"
+                    />
+                    <div
+                      class="absolute inset-0 rounded-md bg-black opacity-25"
+                    ></div>
+                    <div class="relative bg-white bg-opacity-75 px-4 pb-4">
+                      <div class="relative mb-2 mt-4 text-lg font-bold">
+                        Bay cùng QAirline
+                        <AnimatedIcon
+                          id="vege"
+                          target="#fly-with-qairline"
+                          :size="24"
+                        />
+                      </div>
+                      <p
+                        class="relative text-sm leading-tight text-muted-foreground"
+                      >
+                        Trải nghiệm dịch vụ hàng không thân thiện với môi
+                        trường.
+                      </p>
+                    </div>
+                  </a>
+                </NavigationMenuLink>
+              </li>
+              <li v-for="item in explore_items" :key="item.title">
+                <NavigationMenuLink as-child>
+                  <a
+                    :href="item.href"
+                    class="flex select-none items-center space-x-3 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    <AnimatedIcon
+                      :id="item.icon"
+                      :size="32"
+                      class="text-accent"
+                      target="a"
+                    />
+                    <div class="flex flex-col">
+                      <div class="text-sm font-medium leading-none">
+                        {{ item.title }}
+                      </div>
+                      <p
+                        class="line-clamp-2 text-sm leading-snug text-muted-foreground"
+                      >
+                        {{ item.description }}
+                      </p>
+                    </div>
+                  </a>
+                </NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Dịch vụ</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul
+              class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]"
+            >
+              <li v-for="service in services" :key="service.title">
+                <NavigationMenuLink as-child>
+                  <a
+                    :href="service.href"
+                    class="flex select-none items-center space-x-2 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    <AnimatedIcon
+                      :id="service.icon"
+                      :size="32"
+                      class="text-accent"
+                      target="a"
+                    />
+                    <div class="flex flex-col">
+                      <div class="text-sm font-medium leading-none">
+                        {{ service.title }}
+                      </div>
+                      <p
+                        class="line-clamp-2 text-sm leading-snug text-muted-foreground"
+                      >
+                        {{ service.description }}
+                      </p>
+                    </div>
+                  </a>
+                </NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            href="/docs/introduction"
+            :class="navigationMenuTriggerStyle()"
+          >
+            Giới thiệu
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  </div>
 </template>
