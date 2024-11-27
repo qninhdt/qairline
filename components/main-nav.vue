@@ -208,7 +208,10 @@ const services = [
     <NavigationMenu class="hidden md:block">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Khám phá</NavigationMenuTrigger>
+          <NavigationMenuTrigger
+            class="bg-transparent hover:bg-transparent focus:bg-transparent"
+            >Khám phá</NavigationMenuTrigger
+          >
           <NavigationMenuContent>
             <ul
               class="grid gap-3 p-6 md:w-[400px] lg:w-[600px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]"
@@ -276,7 +279,10 @@ const services = [
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Dịch vụ</NavigationMenuTrigger>
+          <NavigationMenuTrigger
+            class="bg-transparent hover:bg-transparent focus:bg-transparent"
+            >Dịch vụ</NavigationMenuTrigger
+          >
           <NavigationMenuContent>
             <ul
               class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]"
@@ -313,6 +319,7 @@ const services = [
           <NavigationMenuLink
             href="/docs/introduction"
             :class="navigationMenuTriggerStyle()"
+            class="bg-transparent hover:bg-transparent focus:bg-transparent"
           >
             Giới thiệu
           </NavigationMenuLink>

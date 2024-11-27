@@ -5,7 +5,9 @@ import UserNav from './user-nav.vue'
 </script>
 
 <template>
-  <div class="border-b">
+  <div
+    class="fixed left-0 top-0 z-50 w-[100vw] bg-[hsl(var(--opacity-background))]"
+  >
     <div class="flex h-16 items-center px-4 lg:px-16">
       <div class="flex items-center md:space-x-4">
         <QAirlineLogo />
