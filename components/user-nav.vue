@@ -27,14 +27,16 @@ const LINKS = [
 
 <template>
   <div>
-    <div class="md:hidden">
+    <div class="flex items-center md:hidden">
       <Drawer>
         <DrawerTrigger as-child>
-          <Button variant="ghost" class="h-10 w-10 rounded-full">
-            <Avatar class="h-10 w-10">
+          <Button
+            variant="ghost"
+            class="h-8 w-8 rounded-full outline-dashed outline-2 outline-offset-2 outline-green-800"
+          >
+            <Avatar class="h-8 w-8">
               <AvatarImage
-                src="https://github.blog/news-insights/company-news/identicons/"
-                alt="@shadcn"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4dn0O2r3-rdH1GQFygZrIrbWAANcX7Qdgvg&s"
               />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
@@ -43,10 +45,9 @@ const LINKS = [
         <DrawerContent>
           <DrawerHeader>
             <div class="flex items-center space-x-2">
-              <Avatar class="h-10 w-10">
+              <Avatar class="h-8 w-8">
                 <AvatarImage
-                  src="https://github.blog/news-insights/company-news/identicons/"
-                  alt="@shadcn"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4dn0O2r3-rdH1GQFygZrIrbWAANcX7Qdgvg&s"
                 />
                 <AvatarFallback>SC</AvatarFallback>
               </Avatar>
@@ -91,14 +92,17 @@ const LINKS = [
         </DrawerContent>
       </Drawer>
     </div>
-    <div class="hidden md:block">
+    <div class="hidden items-center md:flex">
       <DropdownMenu>
         <DropdownMenuTrigger as-child>
-          <Button variant="ghost" class="relative h-10 w-10 rounded-full">
-            <Avatar class="h-10 w-10">
+          <Button
+            variant="ghost"
+            class="relative h-8 w-8 rounded-full outline-dashed outline-2 outline-offset-2 outline-green-800"
+          >
+            <Avatar class="h-8 w-8">
               <AvatarImage
-                src="https://github.blog/news-insights/company-news/identicons/"
-                alt="@shadcn"
+                class="outline-dotted outline-2 outline-offset-2 outline-green-800"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4dn0O2r3-rdH1GQFygZrIrbWAANcX7Qdgvg&s"
               />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
