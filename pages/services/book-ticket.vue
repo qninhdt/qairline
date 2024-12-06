@@ -52,14 +52,10 @@ const round_trip_date = ref<DateRange>({
 </script>
 
 <template>
-  <div class="m-auto">
-    <img
-      src="https://www.vacationstravel.com/wp-content/uploads/2024/01/AdobeStock_467994223.jpg?fbclid=IwZXh0bgNhZW0CMTEAAR3PbbuK3kcsydAW-7MB2EeiWwvyyhkN4OOO46Bq97DbMzlzrlK5JFlAfUU_aem_2nppyJMPvUaiSKfQZm1b0g"
-      alt=""
-      class="h-[300px] w-full object-cover"
-    />
-    <div class="m-auto w-9/12 pb-[32px] pt-[60px]">
-      <h1 class="text-[30px]">ĐẶT VÉ</h1>
+  <div
+    class="h-screen bg-[url('https://www.vacationstravel.com/wp-content/uploads/2024/01/AdobeStock_467994223.jpg?fbclid=IwZXh0bgNhZW0CMTEAAR3PbbuK3kcsydAW-7MB2EeiWwvyyhkN4OOO46Bq97DbMzlzrlK5JFlAfUU_aem_2nppyJMPvUaiSKfQZm1b0g')] bg-cover"
+  >
+    <div class="m-auto w-9/12 pb-[32px] pt-[200px]">
       <Tabs default-value="one-way" class="m-auto w-[400px]">
         <TabsList class="grid w-full grid-cols-2">
           <TabsTrigger value="one-way"> Một chiều </TabsTrigger>
