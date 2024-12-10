@@ -93,17 +93,17 @@ const services = [
           class="fixed bottom-6 left-4 z-50 flex h-10 w-10 items-center justify-center md:hidden"
         >
           <div
-            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-[#27ae60]"
+            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-primary"
           ></div>
           <div
-            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-[#27ae60] delay-500"
+            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-primary delay-500"
           ></div>
           <div
-            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-[#27ae60] delay-1000"
+            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-primary delay-1000"
           ></div>
           <div class="absolute z-20">
             <div
-              class="flex h-10 w-10 items-center justify-center rounded-full bg-[#27ae60] md:hidden"
+              class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary bg-background md:hidden"
             >
               <AnimatedIcon id="layer" :size="24" />
             </div>
@@ -123,8 +123,8 @@ const services = [
                 class="absolute inset-0 h-full w-full rounded-md object-cover"
                 alt="Background"
               />
-              <div class="relative bg-white bg-opacity-75 px-4 pb-2">
-                <div class="relative mb-2 mt-4 text-lg font-bold">
+              <div class="relative bg-[var(--background-75)] px-4 pb-2">
+                <div class="relative mb-2 mt-4 text-center text-lg font-bold">
                   Bay cùng QAirline
                   <AnimatedIcon
                     id="vege"
@@ -231,7 +231,7 @@ const services = [
                     <div
                       class="absolute inset-0 rounded-md bg-black opacity-25"
                     ></div>
-                    <div class="relative bg-white bg-opacity-75 px-4 pb-4">
+                    <div class="relative bg-[var(--background-75)] px-4 pb-4">
                       <div class="relative mb-2 mt-4 text-lg font-bold">
                         Bay cùng QAirline
                         <AnimatedIcon

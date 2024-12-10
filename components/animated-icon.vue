@@ -45,6 +45,9 @@ const iconSrc = computed(() => {
   const iconId = ID_TO_LORDICON_ID[id]
   return iconId ? `https://cdn.lordicon.com/${iconId}.json` : ''
 })
+
+const colorMode = useColorMode()
+const isDarkMode = computed(() => colorMode.preference === 'dark')
 </script>
 
 <template>
@@ -52,6 +55,7 @@ const iconSrc = computed(() => {
     :src="iconSrc"
     trigger="hover"
     stroke="bold"
+    :colors="`primary:#16a085,secondary:${isDarkMode ? '#ffffff' : '#121331'}`"
     :style="iconStyle"
     v-bind="$attrs"
   ></lord-icon>

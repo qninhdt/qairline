@@ -32,7 +32,7 @@ const LINKS = [
         <DrawerTrigger as-child>
           <Button
             variant="ghost"
-            class="h-8 w-8 rounded-full outline-dashed outline-2 outline-offset-2 outline-green-800"
+            class="h-8 w-8 rounded-full outline-dashed outline-2 outline-offset-2 outline-primary"
           >
             <Avatar class="h-8 w-8">
               <AvatarImage
@@ -93,15 +93,15 @@ const LINKS = [
       </Drawer>
     </div>
     <div class="hidden items-center md:flex">
-      <DropdownMenu>
+      <DropdownMenu class="bg-background">
         <DropdownMenuTrigger as-child>
           <Button
             variant="ghost"
-            class="relative h-8 w-8 rounded-full outline-dashed outline-2 outline-offset-2 outline-green-800"
+            class="relative h-8 w-8 rounded-full outline-dashed outline-2 outline-offset-2 outline-primary"
           >
             <Avatar class="h-8 w-8">
               <AvatarImage
-                class="outline-dotted outline-2 outline-offset-2 outline-green-800"
+                class="outline-dotted outline-2 outline-offset-2 outline-primary"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4dn0O2r3-rdH1GQFygZrIrbWAANcX7Qdgvg&s"
               />
               <AvatarFallback>SC</AvatarFallback>
