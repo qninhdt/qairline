@@ -1,8 +1,21 @@
 <script setup lang="ts">
-import NavBar from '~/components/nav-bar.vue'
+const NO_NAVBAR_PAGES = ['auth', 'admin']
+
+const route = useRoute()
+
+const showNavBar = computed(() => {
+  for (const page of NO_NAVBAR_PAGES) {
+    if (route.fullPath.includes(page)) {
+      return false
+    }
+  }
+  return true
+})
 </script>
 
 <template>
-  <NavBar />
-  <NuxtPage />
+  <div>
+    <NavBar v-if="showNavBar" />
+    <NuxtPage />
+  </div>
 </template>

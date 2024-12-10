@@ -2,6 +2,7 @@
 import QAirlineLogo from './qairline-logo.vue'
 import MainNav from './main-nav.vue'
 import UserNav from './user-nav.vue'
+import DarkModeButton from './darkmode-button.vue'
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import UserNav from './user-nav.vue'
       <MainNav class="mx-6" />
       <div class="ml-auto flex items-center space-x-4">
         <UserNav />
+        <DarkModeButton />
       </div>
     </div>
   </div>
