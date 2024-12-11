@@ -210,7 +210,7 @@ const round_trip_date = ref<DateRange>({
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Tìm vé</Button>
+              <Button class="m-auto">Tìm vé</Button>
             </CardFooter>
           </Card>
         </TabsContent>
@@ -389,7 +389,7 @@ const round_trip_date = ref<DateRange>({
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Tìm vé</Button>
+              <Button class="m-auto">Tìm vé</Button>
             </CardFooter>
           </Card>
         </TabsContent>
