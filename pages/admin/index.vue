@@ -1,14 +1,4 @@
-<script setup lang="ts">
-import NavBarAdmin from '~/components/nav-bar-admin.vue'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from '@/components/ui/card'
-import RecentSales from './components/RecentSales.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <NavBarAdmin>
@@ -117,7 +107,7 @@ import RecentSales from './components/RecentSales.vue'
           <CardTitle>Overview</CardTitle>
         </CardHeader>
         <CardContent class="pl-2">
-          <Overview />
+          <SimpleChartBar />
         </CardContent>
       </Card>
       <Card class="col-span-3">
