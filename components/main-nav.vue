@@ -93,13 +93,13 @@ const services = [
           class="fixed bottom-6 left-4 z-50 flex h-10 w-10 items-center justify-center md:hidden"
         >
           <div
-            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-primary"
+            class="animate-wave absolute z-10 h-full w-full rounded-full border-2 border-primary"
           ></div>
           <div
-            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-primary delay-500"
+            class="animate-wave absolute z-10 h-full w-full rounded-full border-2 border-primary delay-500"
           ></div>
           <div
-            class="absolute z-10 h-full w-full animate-wave rounded-full border-2 border-primary delay-1000"
+            class="animate-wave absolute z-10 h-full w-full rounded-full border-2 border-primary delay-1000"
           ></div>
           <div class="absolute z-20">
             <div
@@ -229,7 +229,7 @@ const services = [
                       alt="Background"
                     />
                     <div
-                      class="absolute inset-0 rounded-md bg-black opacity-25"
+                      class="absolute inset-0 overflow-hidden rounded-md bg-black opacity-25"
                     ></div>
                     <div class="relative bg-[var(--background-75)] px-4 pb-4">
                       <div class="relative mb-2 mt-4 text-lg font-bold">
