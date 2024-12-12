@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const { id, size = 16 } = defineProps<{
+const {
+  id,
+  color = null,
+  size = 16
+} = defineProps<{
   id: string
   size: number
+  color?: string
 }>()
 
 const ID_TO_LORDICON_ID: Record<string, string> = {
@@ -14,7 +19,6 @@ const ID_TO_LORDICON_ID: Record<string, string> = {
   info: 'osqflufj',
   bussiness_card: 'kkwpwktn',
   circle_avatar: 'whvtbbby',
-  facebook: 'lplofcfe',
   instagram: 'ewswvzmw',
   x: 'jvodbtcr',
   logout: 'pbalszem',
@@ -33,7 +37,10 @@ const ID_TO_LORDICON_ID: Record<string, string> = {
   firework: 'jbbaiwhg',
   layer: 'jectmwqf',
   grid: 'ervhjijl',
-  nav: 'suwzildd'
+  nav: 'suwzildd',
+  google: 'smafogdu',
+  facebook: 'bfoumeno',
+  arrow_right: 'vpxzpyce'
 }
 
 const iconStyle = computed(() => ({
@@ -48,6 +55,11 @@ const iconSrc = computed(() => {
 
 const colorMode = useColorMode()
 const isDarkMode = computed(() => colorMode.preference === 'dark')
+const colorStr = computed(() =>
+  color
+    ? `primary:${color},secondary:${color}`
+    : `primary:#16a085,secondary:${isDarkMode.value ? '#ffffff' : '#121331'}`
+)
 </script>
 
 <template>
@@ -55,7 +67,7 @@ const isDarkMode = computed(() => colorMode.preference === 'dark')
     :src="iconSrc"
     trigger="hover"
     stroke="bold"
-    :colors="`primary:#16a085,secondary:${isDarkMode ? '#ffffff' : '#121331'}`"
+    :colors="colorStr"
     :style="iconStyle"
     v-bind="$attrs"
   ></lord-icon>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { ChevronRightIcon } from '@radix-icons/vue'
+import { ChevronRight } from 'lucide-vue-next'
 import {
   CalendarNext,
   type CalendarNextProps,
@@ -34,7 +34,7 @@ const forwardedProps = useForwardProps(delegatedProps)
     v-bind="forwardedProps"
   >
     <slot>
-      <ChevronRightIcon class="h-4 w-4" />
+      <ChevronRight class="h-4 w-4" />
     </slot>
   </CalendarNext>
 </template>
