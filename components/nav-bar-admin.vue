@@ -34,7 +34,7 @@ import QAirlineLogo from '../components/qairline-logo.vue'
       <aside class="-mx-4 lg:w-1/5">
         <SidebarNav />
       </aside>
-      <div class="flex-1 lg:max-w-2xl">
+      <div class="flex-1">
         <div class="space-y-6">
           <slot />
         </div>
