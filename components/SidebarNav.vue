@@ -15,15 +15,15 @@ const sidebarNavItems: Item[] = [
     href: '/admin/'
   },
   {
-    title: 'Quản lý thông tin hãng',
+    title: 'Tin tức',
     href: '/admin/posts'
   },
   {
-    title: 'Quản lý thông tin tàu bay',
+    title: 'Tàu bay',
     href: '/admin/plane'
   },
   {
-    title: 'Quản lý đặt vé khách hàng',
+    title: 'Chuyến bay',
     href: '/admin/bookings'
   }
 ]
@@ -40,7 +40,7 @@ const sidebarNavItems: Item[] = [
       :class="
         cn(
           'w-full justify-start text-left',
-          $route.path === item.href && 'bg-muted hover:bg-muted'
+          $route.path === item.href && 'bg-primary text-white hover:bg-muted'
         )
       "
     >
