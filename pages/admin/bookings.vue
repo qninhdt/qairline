@@ -3,7 +3,7 @@
     <div class="bg-gray-100 p-6">
       <!-- Header -->
       <div class="mb-4 flex items-center justify-between">
-        <h1 class="text-2xl font-semibold">Bookings</h1>
+        <h1 class="mb-4 text-2xl font-bold text-gray-800">Bookings</h1>
         <Button>+ Add Booking</Button>
       </div>
 
@@ -12,7 +12,7 @@
         <input
           v-model="searchQuery"
           type="text"
-          class="input"
+          class="rounded-[15px] border border-gray-300 p-2"
           placeholder="Search airlines, flight number, etc."
         />
         <div class="flex items-center gap-4">
@@ -34,7 +34,9 @@
       </div>
 
       <!-- Table -->
-      <table class="w-full table-auto rounded-lg bg-white shadow-md">
+      <table
+        class="w-full table-auto border-collapse rounded-lg border border-gray-300 bg-white shadow-md"
+      >
         <thead class="bg-gray-200 text-gray-600">
           <tr>
             <th class="px-4 py-2 text-left">Flight No.</th>
@@ -132,24 +134,4 @@ export default {
 }
 </script>
 
-<style scoped>
-/* Basic styling for buttons and inputs */
-.input {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  border-radius: 15px; /* Bo góc nhẹ */
-}
-
-.table-auto {
-  border-collapse: collapse;
-}
-th,
-td {
-  border: 1px solid #ddd;
-  text-align: left;
-  padding: 8px;
-}
-th {
-  background-color: #f2f2f2;
-}
-</style>
+<style scoped></style>
