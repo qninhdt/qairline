@@ -1,6 +1,35 @@
 <template>
   <NavBarAdmin>
     <div class="min-h-screen overflow-y-auto bg-gray-100 p-6">
+      <div class="mb-4 flex items-center justify-between">
+        <Button>Thêm chuyến bay</Button>
+      </div>
+
+      <!-- Filters -->
+      <div class="mb-6 flex items-center justify-between">
+        <input
+          v-model="searchQuery"
+          type="text"
+          class="rounded-[15px] border border-gray-300 p-2"
+          placeholder="Search airlines, flight number, etc."
+        />
+        <div class="flex items-center gap-4">
+          <select v-model="selectedStatus" class="input">
+            <option value="">All Status</option>
+            <option value="Confirmed">Đã xác nhận</option>
+            <option value="Pending">Đang chờ</option>
+            <option value="Canceled">Đã hủy</option>
+          </select>
+          <Popover class="input">
+            <PopoverTrigger as-child>
+              <Button>Chọn ngày</Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <Calendar v-model="selectedDate" />
+            </PopoverContent>
+          </Popover>
+        </div>
+      </div>
       <!-- Container bao bọc danh sách card -->
       <div class="h-screen overflow-y-scroll bg-gray-100 p-6">
         <FlightCard

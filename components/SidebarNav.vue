@@ -40,7 +40,8 @@ const sidebarNavItems: Item[] = [
       :class="
         cn(
           'w-full justify-start text-left',
-          $route.path === item.href && 'bg-primary text-white hover:bg-muted'
+          $route.path === item.href &&
+            'bg-primary text-white hover:bg-primary hover:text-white'
         )
       "
     >
