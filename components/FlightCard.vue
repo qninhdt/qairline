@@ -58,6 +58,9 @@
         </span>
       </div>
       <div>
+        <span class="block">Ngày bay: {{ flight.flightDate }}</span>
+      </div>
+      <div>
         <span class="block">Ngày tạo: {{ flight.createdAt }}</span>
         <span class="block">Ngày cập nhật: {{ flight.updatedAt }}</span>
       </div>
