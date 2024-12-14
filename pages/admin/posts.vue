@@ -2,28 +2,47 @@
   <NavBarAdmin>
     <div class="h-screen overflow-y-scroll bg-gray-100 p-6">
       <Button class="mb-6 block shadow" @click="addPost">Thêm bài đăng</Button>
-      <Card
-        v-for="post in posts"
-        :key="post.title"
-        class="m-6 inline-block w-[320px]"
-      >
-        <img
-          :src="post.image"
-          alt=""
-          class="h-[200px] w-full rounded-lg object-cover"
-        />
-        <CardHeader>
-          <CardTitle>Chương trình khuyến mãi</CardTitle>
-          <CardDescription>
-            Ngày tạo bài viết
-            <Button
-              class="float-right bg-red-500 px-4 py-2 text-white shadow hover:bg-red-600"
-              @click="deletePost(post)"
-              >Xóa</Button
-            >
-          </CardDescription>
-        </CardHeader>
-      </Card>
+      <Dialog v-for="post in posts" :key="post.title">
+        <DialogTrigger as-child>
+          <Card class="m-6 inline-block w-[320px]">
+            <img
+              :src="post.image"
+              alt=""
+              class="h-[200px] w-full rounded-lg object-cover"
+            />
+            <CardHeader>
+              <CardTitle>{{ post.title }}</CardTitle>
+              <CardDescription>
+                Ngày tạo bài viết
+                <Button
+                  class="float-right bg-red-500 px-4 py-2 text-white shadow hover:bg-red-600"
+                  @click="deletePost(post)"
+                  >Xóa</Button
+                >
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </DialogTrigger>
+        <DialogContent class="sm:max-w-md">
+          <ScrollArea class="max-h-[500px] p-3">
+            <DialogHeader>
+              <DialogTitle>{{ post.title }}</DialogTitle>
+              <DialogDescription> Ngày tạo bài viết </DialogDescription>
+            </DialogHeader>
+            <img
+              :src="post.image"
+              alt=""
+              class="h-[200px] w-full rounded-lg object-cover"
+            />
+            <p>{{ post.content }}</p>
+            <DialogFooter class="sm:justify-start">
+              <DialogClose as-child>
+                <Button type="button" variant="secondary"> Close </Button>
+              </DialogClose>
+            </DialogFooter>
+          </ScrollArea>
+        </DialogContent>
+      </Dialog>
     </div>
   </NavBarAdmin>
 </template>
