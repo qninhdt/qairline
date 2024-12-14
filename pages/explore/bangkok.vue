@@ -110,8 +110,10 @@ const places = [
                 alt=""
                 class="h-[200px] w-full rounded-lg object-cover"
               />
-              <h3 class="text-[20px] font-semibold">{{ place.title }}</h3>
-              <p>
+              <h3 class="text-[20px] font-semibold text-black">
+                {{ place.title }}
+              </h3>
+              <p class="text-black">
                 {{ place.description }}
               </p>
             </div>
@@ -141,8 +143,10 @@ const places = [
                 alt=""
                 class="h-[200px] w-full rounded-lg object-cover"
               />
-              <h3 class="text-[20px] font-semibold">{{ food.title }}</h3>
-              <p>
+              <h3 class="text-[20px] font-semibold text-black">
+                {{ food.title }}
+              </h3>
+              <p class="text-black">
                 {{ food.description }}
               </p>
             </div>

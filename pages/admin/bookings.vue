@@ -1,6 +1,6 @@
 <template>
   <NavBarAdmin>
-    <div class="min-h-screen overflow-y-auto bg-gray-100 p-6">
+    <div class="h-screen overflow-y-auto bg-gray-100 p-6">
       <div class="mb-4 flex items-center justify-between">
         <Button>Thêm chuyến bay</Button>
       </div>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <!-- Container bao bọc danh sách card -->
-      <div class="h-screen overflow-y-scroll bg-gray-100 p-6">
+      <div class="bg-gray-100 p-6">
         <FlightCard
           v-for="flight in flights"
           :key="flight.id"
