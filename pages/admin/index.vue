@@ -7,7 +7,7 @@
         <CardHeader
           class="flex flex-row items-center justify-between space-y-0 pb-2"
         >
-          <CardTitle class="text-sm font-medium"> Total Revenue </CardTitle>
+          <CardTitle class="text-sm font-medium"> Tổng doanh thu </CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -25,14 +25,16 @@
         </CardHeader>
         <CardContent>
           <div class="text-2xl font-bold">$45,231.89</div>
-          <p class="text-xs text-muted-foreground">+20.1% from last month</p>
+          <p class="text-xs text-muted-foreground">+20.1%</p>
         </CardContent>
       </Card>
       <Card>
         <CardHeader
           class="flex flex-row items-center justify-between space-y-0 pb-2"
         >
-          <CardTitle class="text-sm font-medium"> Completed Flights </CardTitle>
+          <CardTitle class="text-sm font-medium">
+            Chuyến bay đã hoàn thành
+          </CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -50,14 +52,14 @@
         </CardHeader>
         <CardContent>
           <div class="text-2xl font-bold">50</div>
-          <p class="text-xs text-muted-foreground">+180.1% from last month</p>
+          <p class="text-xs text-muted-foreground">+180.1%</p>
         </CardContent>
       </Card>
       <Card>
         <CardHeader
           class="flex flex-row items-center justify-between space-y-0 pb-2"
         >
-          <CardTitle class="text-sm font-medium"> Canceled Flights </CardTitle>
+          <CardTitle class="text-sm font-medium"> Chuyến bay bị hủy </CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -74,14 +76,16 @@
         </CardHeader>
         <CardContent>
           <div class="text-2xl font-bold">12</div>
-          <p class="text-xs text-muted-foreground">-19% from last month</p>
+          <p class="text-xs text-muted-foreground">-19%</p>
         </CardContent>
       </Card>
       <Card>
         <CardHeader
           class="flex flex-row items-center justify-between space-y-0 pb-2"
         >
-          <CardTitle class="text-sm font-medium"> Active Flights </CardTitle>
+          <CardTitle class="text-sm font-medium">
+            Chuyến bay đang hoạt động
+          </CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -104,7 +108,7 @@
     <div class="grid gap-4 bg-gray-100 p-6 md:grid-cols-2 lg:grid-cols-7">
       <Card class="col-span-4">
         <CardHeader>
-          <CardTitle>Overview</CardTitle>
+          <CardTitle>Tổng quan</CardTitle>
         </CardHeader>
         <CardContent class="pl-2">
           <SimpleChartBar />
@@ -112,8 +116,8 @@
       </Card>
       <Card class="col-span-3">
         <CardHeader>
-          <CardTitle>Recent Sales</CardTitle>
-          <CardDescription> You made 265 sales this month. </CardDescription>
+          <CardTitle>Gần đây</CardTitle>
+          <CardDescription> Bạn có thêm 25 khách hàng mới.</CardDescription>
         </CardHeader>
         <CardContent>
           <RecentSales />

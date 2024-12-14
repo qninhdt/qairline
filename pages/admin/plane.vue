@@ -1,7 +1,6 @@
 <template>
   <NavBarAdmin>
     <div class="bg-gray-100 p-6">
-      <h1 class="mb-4 text-2xl font-bold text-gray-800">Quản lý Máy bay</h1>
       <Button class="mb-6 shadow" @click="addPlane">Thêm Máy bay</Button>
 
       <div class="overflow-x-auto">

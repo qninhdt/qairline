@@ -3,8 +3,7 @@
     <div class="bg-gray-100 p-6">
       <!-- Header -->
       <div class="mb-4 flex items-center justify-between">
-        <h1 class="mb-4 text-2xl font-bold text-gray-800">Bookings</h1>
-        <Button>+ Add Booking</Button>
+        <Button>Thêm chuyến bay</Button>
       </div>
 
       <!-- Filters -->
@@ -18,13 +17,13 @@
         <div class="flex items-center gap-4">
           <select v-model="selectedStatus" class="input">
             <option value="">All Status</option>
-            <option value="Confirmed">Confirmed</option>
-            <option value="Pending">Pending</option>
-            <option value="Canceled">Canceled</option>
+            <option value="Confirmed">Đã xác nhận</option>
+            <option value="Pending">Đang chờ</option>
+            <option value="Canceled">Đã hủy</option>
           </select>
           <Popover class="input">
             <PopoverTrigger as-child>
-              <Button>Select Date</Button>
+              <Button>Chọn ngày</Button>
             </PopoverTrigger>
             <PopoverContent>
               <Calendar v-model="selectedDate" />
@@ -39,14 +38,14 @@
       >
         <thead class="bg-gray-200 text-gray-600">
           <tr>
-            <th class="px-4 py-2 text-left">Flight No.</th>
-            <th class="px-4 py-2 text-left">Airline</th>
-            <th class="px-4 py-2 text-left">Route</th>
-            <th class="px-4 py-2 text-left">Departure</th>
-            <th class="px-4 py-2 text-left">Arrival</th>
-            <th class="px-4 py-2 text-left">Date</th>
-            <th class="px-4 py-2 text-left">Passengers</th>
-            <th class="px-4 py-2 text-left">Status</th>
+            <th class="px-4 py-2 text-left">Số hiệu</th>
+            <th class="px-4 py-2 text-left">Tàu bay</th>
+            <th class="px-4 py-2 text-left">Chặng</th>
+            <th class="px-4 py-2 text-left">Điểm đi</th>
+            <th class="px-4 py-2 text-left">Điểm đến</th>
+            <th class="px-4 py-2 text-left">Ngày</th>
+            <th class="px-4 py-2 text-left">Hành khách</th>
+            <th class="px-4 py-2 text-left">Trạng thái</th>
           </tr>
         </thead>
         <tbody>
@@ -65,9 +64,9 @@
             <td
               class="px-4 py-2"
               :class="{
-                'text-green-600': booking.status === 'Confirmed',
-                'text-yellow-600': booking.status === 'Pending',
-                'text-red-600': booking.status === 'Canceled'
+                'text-green-600': booking.status === 'Đã xác nhận',
+                'text-yellow-600': booking.status === 'Đang chờ',
+                'text-red-600': booking.status === 'Đã hủy'
               }"
             >
               {{ booking.status }}
@@ -95,7 +94,7 @@ export default {
           arrival: '12:00 PM',
           date: '2024-11-11',
           passengers: '207',
-          status: 'Confirmed'
+          status: 'Đã xác nhận'
         },
         {
           flightNo: 'QW-198787',
@@ -105,7 +104,17 @@ export default {
           arrival: '8:20 AM',
           date: '2028-07-02',
           passengers: '177',
-          status: 'Pending'
+          status: 'Đang chờ'
+        },
+        {
+          flightNo: 'QW-198787',
+          airline: 'QuickWing Air',
+          route: 'IRO → LAX',
+          departure: '1:00 PM',
+          arrival: '8:20 AM',
+          date: '2028-07-02',
+          passengers: '177',
+          status: 'Đã hủy'
         }
         // Add more dummy data here
       ]
