@@ -1,6 +1,6 @@
 <template>
   <NavBarAdmin>
-    <div class="relative min-h-screen overflow-y-auto bg-gray-100 p-6">
+    <div class="relative min-h-screen overflow-y-auto p-6">
       <!-- Bộ lọc -->
       <div class="fixed right-6 top-6 w-64 rounded-lg bg-white p-4 shadow-md">
         <h3 class="mb-4 text-lg font-bold">Bộ lọc</h3>

@@ -1,25 +1,27 @@
 <template>
   <NavBarAdmin>
-    <div class="h-screen overflow-y-scroll bg-gray-100 p-6">
-      <Button class="mb-6 block shadow" @click="addPost">Thêm bài đăng</Button>
+    <div class="h-screen overflow-y-scroll p-6">
+      <Button class="mb-6 block shadow" @click="addPost">
+        <a href="/admin/posts/write-post">Thêm bài đăng</a></Button
+      >
       <Dialog v-for="post in posts" :key="post.title">
         <DialogTrigger as-child>
-          <Card class="m-6 inline-block w-[320px]">
+          <Card
+            class="m-6 inline-block w-[320px] transform cursor-pointer shadow-lg transition-shadow duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
+          >
             <img
               :src="post.image"
               alt=""
-              class="h-[200px] w-full rounded-lg object-cover"
+              class="h-[180px] w-full rounded-t-lg object-cover"
             />
-            <CardHeader>
-              <CardTitle>{{ post.title }}</CardTitle>
-              <CardDescription>
-                Ngày tạo bài viết
-                <Button
-                  class="float-right bg-red-500 px-4 py-2 text-white shadow hover:bg-red-600"
-                  @click="deletePost(post)"
-                  >Xóa</Button
-                >
-              </CardDescription>
+            <CardHeader class="p-3">
+              <CardTitle class="inline text-sm">{{ post.title }}</CardTitle>
+              <CardDescription> Ngày tạo bài viết </CardDescription>
+              <Button
+                class="float-right bg-red-500 px-4 py-2 text-white shadow hover:bg-red-600"
+                @click="deletePost(post)"
+                >Xóa</Button
+              >
             </CardHeader>
           </Card>
         </DialogTrigger>

@@ -17,17 +17,19 @@ import QAirlineLogo from '../components/qairline-logo.vue'
     />
   </div>
   <div
-    class="fixed left-0 top-0 z-50 hidden w-[100vw] space-y-6 p-3 pb-2 md:block"
+    class="fixed left-0 top-0 z-50 hidden w-[100vw] space-y-6 p-4 pb-2 pt-0 md:block"
   >
     <div class="flex flex-col space-y-2 lg:flex-row lg:space-x-12 lg:space-y-0">
       <aside class="-mx-4 lg:w-1/5">
-        <div class="mb-[20px] flex items-center justify-center md:space-x-4">
+        <div
+          class="mb-[20px] flex items-center justify-center pt-5 md:space-x-4"
+        >
           <QAirlineLogo />
         </div>
         <SidebarNav />
       </aside>
       <div class="flex-1">
-        <div class="space-y-6">
+        <div class="h-screen space-y-6 bg-gray-100">
           <slot />
         </div>
       </div>

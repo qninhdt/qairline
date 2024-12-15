@@ -16,7 +16,7 @@ const sidebarNavItems: Item[] = [
   },
   {
     title: 'Tin tức',
-    href: '/admin/posts'
+    href: '/admin/posts/'
   },
   {
     title: 'Tàu bay',
@@ -40,7 +40,9 @@ const sidebarNavItems: Item[] = [
       :class="
         cn(
           'w-full justify-start text-left',
-          $route.path === item.href &&
+          ($route.path === item.href ||
+            ($route.path.startsWith('/admin/posts') &&
+              item.href === '/admin/posts/')) &&
             'bg-primary text-white hover:bg-primary hover:text-white'
         )
       "
