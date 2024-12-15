@@ -40,7 +40,13 @@ const ID_TO_LORDICON_ID: Record<string, string> = {
   nav: 'suwzildd',
   google: 'smafogdu',
   facebook: 'bfoumeno',
-  arrow_right: 'vpxzpyce'
+  arrow_right: 'vpxzpyce',
+  play: 'aesklttu',
+  location: 'onmwuuox',
+  plane: 'bijiyxta',
+  search: 'wjyqkiew',
+  user: 'kdduutaw',
+  filter: 'grsnlwmk'
 }
 
 const iconStyle = computed(() => ({
