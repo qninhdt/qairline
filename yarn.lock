@@ -4921,6 +4921,11 @@ css-declaration-sorter@^7.2.0:
   resolved "https://registry.yarnpkg.com/css-declaration-sorter/-/css-declaration-sorter-7.2.0.tgz#6dec1c9523bc4a643e088aab8f09e67a54961024"
   integrity sha512-h70rUM+3PNFuaBDTLe8wF/cdWu+dOZmb7pJt8Z2sedYbAcQVQV/tEchueg3GWxwqS0cxtbxmaHEdkNACqcvsow==
 
+css-doodle@^0.40.8:
+  version "0.40.8"
+  resolved "https://registry.yarnpkg.com/css-doodle/-/css-doodle-0.40.8.tgz#1bc60d494ac05000a41b1d03beaf8d2d87974b3b"
+  integrity sha512-aoiZI902IanIE6UD8b2MK3VK/NP+aMqV3irxf0Re22L0eUNfxktW+o/9xbYwH5Xbi5O0WwuC6/fKp+b4C7ovbg==
+
 css-select@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/css-select/-/css-select-5.1.0.tgz#b8ebd6554c3637ccc76688804ad3f6a6fdaea8a6"
@@ -10269,6 +10274,11 @@ svgo@^3.3.2:
     css-what "^6.1.0"
     csso "^5.0.5"
     picocolors "^1.0.0"
+
+swiper@^11.1.15:
+  version "11.1.15"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.1.15.tgz#e2258c8d38282e2f115ca463d6e8c5b84cdcf1ca"
+  integrity sha512-IzWeU34WwC7gbhjKsjkImTuCRf+lRbO6cnxMGs88iVNKDwV+xQpBCJxZ4bNH6gSrIbbyVJ1kuGzo3JTtz//CBw==
 
 synckit@^0.9.1:
   version "0.9.2"
