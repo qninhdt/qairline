@@ -1,38 +1,250 @@
 <script setup lang="ts">
-import SidebarNav from '../components/SidebarNav.vue'
 import QAirlineLogo from '../components/qairline-logo.vue'
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import { Separator } from '@/components/ui/separator'
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger
+} from '@/components/ui/collapsible'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarTrigger
+} from '@/components/ui/sidebar'
+import {
+  BadgeCheck,
+  Bell,
+  ChevronRight,
+  ChevronsUpDown,
+  CreditCard,
+  LogOut,
+  SquareTerminal
+} from 'lucide-vue-next'
+
+// This is sample data.
+const data = {
+  user: {
+    name: 'shadcn',
+    email: 'm@example.com',
+    avatar: '/avatars/shadcn.jpg'
+  },
+  navMain: [
+    {
+      title: 'Tin tức',
+      url: 'admin/posts',
+      icon: SquareTerminal,
+      items: [
+        {
+          title: 'Thông tin',
+          url: '/admin/posts/info'
+        },
+        {
+          title: 'Khuyến mãi',
+          url: '/admin/posts/sale'
+        }
+      ]
+    }
+  ]
+}
 </script>
 
 <template>
-  <div class="md:hidden">
-    <VPImage
-      alt="Forms"
-      width="1280"
-      height="1214"
-      class="block"
-      :image="{
-        dark: '/examples/forms-dark.png',
-        light: '/examples/forms-light.png'
-      }"
-    />
-  </div>
-  <div
-    class="fixed left-0 top-0 z-50 hidden w-[100vw] space-y-6 p-4 pb-2 pt-0 md:block"
-  >
-    <div class="flex flex-col space-y-2 lg:flex-row lg:space-x-12 lg:space-y-0">
-      <aside class="-mx-4 lg:w-1/5">
-        <div
-          class="mb-[20px] flex items-center justify-center pt-5 md:space-x-4"
-        >
-          <QAirlineLogo />
+  <SidebarProvider>
+    <Sidebar collapsible="icon">
+      <SideBarHeader class="m-auto p-6">
+        <QAirlineLogo />
+      </SideBarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton as-child>
+                <a href="/admin/">
+                  <component :is="SquareTerminal" />
+                  <span>Trang chủ</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <Collapsible
+              v-for="item in data.navMain"
+              :key="item.title"
+              as-child
+              :default-open="item.isActive"
+              class="group/collapsible"
+            >
+              <SidebarMenuItem>
+                <CollapsibleTrigger as-child>
+                  <SidebarMenuButton :tooltip="item.title">
+                    <component :is="item.icon" />
+                    <span>{{ item.title }}</span>
+                    <ChevronRight
+                      class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
+                    />
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    <SidebarMenuSubItem
+                      v-for="subItem in item.items"
+                      :key="subItem.title"
+                    >
+                      <SidebarMenuSubButton as-child>
+                        <a :href="subItem.url">
+                          <span>{{ subItem.title }}</span>
+                        </a>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </SidebarMenuItem>
+            </Collapsible>
+            <SidebarMenuItem>
+              <SidebarMenuButton as-child>
+                <a href="/admin/plane">
+                  <component :is="SquareTerminal" />
+                  <span>Tàu bay</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton as-child>
+                <a href="/admin/airport">
+                  <component :is="SquareTerminal" />
+                  <span>Sân bay</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton as-child>
+                <a href="/admin/bookings">
+                  <component :is="SquareTerminal" />
+                  <span>Chuyến bay</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
+      </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger as-child>
+                <SidebarMenuButton
+                  size="lg"
+                  class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                >
+                  <Avatar class="h-8 w-8 rounded-lg">
+                    <AvatarImage
+                      :src="data.user.avatar"
+                      :alt="data.user.name"
+                    />
+                    <AvatarFallback class="rounded-lg"> CN </AvatarFallback>
+                  </Avatar>
+                  <div class="grid flex-1 text-left text-sm leading-tight">
+                    <span class="truncate font-semibold">{{
+                      data.user.name
+                    }}</span>
+                    <span class="truncate text-xs">{{ data.user.email }}</span>
+                  </div>
+                  <ChevronsUpDown class="ml-auto size-4" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                class="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                side="bottom"
+                align="end"
+                :side-offset="4"
+              >
+                <DropdownMenuLabel class="p-0 font-normal">
+                  <div
+                    class="flex items-center gap-2 px-1 py-1.5 text-left text-sm"
+                  >
+                    <Avatar class="h-8 w-8 rounded-lg">
+                      <AvatarImage
+                        :src="data.user.avatar"
+                        :alt="data.user.name"
+                      />
+                      <AvatarFallback class="rounded-lg"> CN </AvatarFallback>
+                    </Avatar>
+                    <div class="grid flex-1 text-left text-sm leading-tight">
+                      <span class="truncate font-semibold">{{
+                        data.user.name
+                      }}</span>
+                      <span class="truncate text-xs">{{
+                        data.user.email
+                      }}</span>
+                    </div>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <BadgeCheck />
+                    Account
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <CreditCard />
+                    Billing
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Bell />
+                    Notifications
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <LogOut />
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+      <SidebarRail />
+    </Sidebar>
+    <SidebarInset>
+      <header
+        class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12"
+      >
+        <div class="flex items-center gap-2 px-4">
+          <SidebarTrigger class="-ml-1" />
+          <Separator orientation="vertical" class="mr-2 h-4" />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbSeparator class="hidden md:block" />
+              <BreadcrumbItem>
+                <BreadcrumbPage>QAirline - Vui từng chuyến bay</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
         </div>
-        <SidebarNav />
-      </aside>
-      <div class="flex-1">
-        <div class="h-screen space-y-6 bg-gray-100">
-          <slot />
-        </div>
+      </header>
+      <div class="h-screen space-y-6 bg-gray-100 p-4">
+        <slot />
       </div>
-    </div>
-  </div>
+    </SidebarInset>
+  </SidebarProvider>
 </template>

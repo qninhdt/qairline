@@ -2,7 +2,7 @@
   <NavBarAdmin>
     <div class="h-screen overflow-y-scroll p-6">
       <Button class="mb-6 block shadow" @click="addPost">
-        <a href="/admin/posts/write-post">Thêm bài đăng</a></Button
+        <a href="/admin/posts/sale/post-sale">Thêm bài đăng</a></Button
       >
       <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <Dialog v-for="post in posts" :key="post.title">

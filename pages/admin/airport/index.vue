@@ -15,6 +15,20 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
+import { MoreHorizontal } from 'lucide-vue-next'
+
+const airports = ref([
+  {
+    id: 1,
+    name: 'Laser Lemonade Machine',
+    city: 'Draft',
+    country: 'USA',
+    iata: 'LLM'
+  }
+])
+const deleteAirport = (id) => {
+  airports.value = airports.value.filter((airport) => airport.id !== id)
+}
 </script>
 
 <template>
@@ -36,13 +50,17 @@ import {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
-            <TableCell class="font-medium"> Laser Lemonade Machine </TableCell>
+          <TableRow v-for="airport in airports" :key="airport.id">
+            <TableCell class="font-medium"> {{ airport.name }} </TableCell>
             <TableCell>
-              <Badge variant="outline"> Draft </Badge>
+              {{ airport.city }}
             </TableCell>
-            <TableCell class="hidden md:table-cell"> $499.99 </TableCell>
-            <TableCell class="hidden md:table-cell"> 25 </TableCell>
+            <TableCell class="hidden md:table-cell">
+              {{ airport.country }}
+            </TableCell>
+            <TableCell class="hidden md:table-cell">
+              {{ airport.iata }}
+            </TableCell>
             <TableCell>
               <DropdownMenu>
                 <DropdownMenuTrigger as-child>
@@ -53,8 +71,18 @@ import {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuItem>Edit</DropdownMenuItem>
-                  <DropdownMenuItem>Delete</DropdownMenuItem>
+                  <DropdownMenuItem
+                    ><a
+                      href="/admin/airport/edit-airport/{{airport.id}}"
+                      class="w-full"
+                      >Sửa</a
+                    ></DropdownMenuItem
+                  >
+                  <DropdownMenuItem
+                    class="cursor-pointer"
+                    @click="deleteAirport(airport.id)"
+                    >Xóa</DropdownMenuItem
+                  >
                 </DropdownMenuContent>
               </DropdownMenu>
             </TableCell>
