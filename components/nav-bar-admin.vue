@@ -242,7 +242,7 @@ const data = {
           </Breadcrumb>
         </div>
       </header>
-      <div class="h-screen space-y-6 bg-gray-100 p-4">
+      <div class="h-screen space-y-6 bg-background p-4">
         <slot />
       </div>
     </SidebarInset>
