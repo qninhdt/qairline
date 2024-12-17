@@ -1,6 +1,6 @@
 <template>
   <NavBarAdmin>
-    <div class="relative min-h-screen overflow-y-auto p-6">
+    <div class="relative h-screen overflow-y-auto p-6">
       <!-- Bộ lọc -->
       <div class="fixed right-6 top-6 w-64 rounded-lg bg-white p-4 shadow-md">
         <h3 class="mb-4 text-lg font-bold">Bộ lọc</h3>
@@ -156,7 +156,7 @@
       </div>
 
       <!-- Container bao bọc danh sách card -->
-      <div class="h-screen overflow-y-scroll bg-gray-100 p-6 pr-80">
+      <div class="p-6 pr-80">
         <FlightCard
           v-for="flight in filteredFlights"
           :key="flight.id"

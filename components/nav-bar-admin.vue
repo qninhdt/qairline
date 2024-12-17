@@ -81,7 +81,7 @@ const data = {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton as-child>
-                <a href="/admin/">
+                <router-link to="/admin/" active-class="bg-muted">
                   <AnimatedIcon
                     :id="'home'"
                     :size="32"
@@ -89,7 +89,7 @@ const data = {
                     target="a"
                   />
                   <span>Trang chủ</span>
-                </a>
+                </router-link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <Collapsible
@@ -121,9 +121,9 @@ const data = {
                       :key="subItem.title"
                     >
                       <SidebarMenuSubButton as-child>
-                        <a :href="subItem.url">
+                        <router-link :to="subItem.url" active-class="bg-muted">
                           <span>{{ subItem.title }}</span>
-                        </a>
+                        </router-link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   </SidebarMenuSub>
@@ -132,7 +132,7 @@ const data = {
             </Collapsible>
             <SidebarMenuItem>
               <SidebarMenuButton as-child>
-                <a href="/admin/plane">
+                <router-link to="/admin/plane" active-class="bg-muted">
                   <AnimatedIcon
                     :id="'plane'"
                     :size="32"
@@ -140,12 +140,12 @@ const data = {
                     target="a"
                   />
                   <span>Tàu bay</span>
-                </a>
+                </router-link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton as-child>
-                <a href="/admin/airport">
+                <router-link to="/admin/airport" active-class="bg-muted">
                   <AnimatedIcon
                     :id="'airport_runway'"
                     :size="32"
@@ -153,12 +153,12 @@ const data = {
                     target="a"
                   />
                   <span>Sân bay</span>
-                </a>
+                </router-link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton as-child>
-                <a href="/admin/bookings">
+                <router-link to="/admin/bookings" active-class="bg-muted">
                   <AnimatedIcon
                     :id="'travel_agency'"
                     :size="32"
@@ -166,7 +166,7 @@ const data = {
                     target="a"
                   />
                   <span>Chuyến bay</span>
-                </a>
+                </router-link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
