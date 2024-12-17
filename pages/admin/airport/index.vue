@@ -37,7 +37,7 @@ const deleteAirport = (id) => {
       <Button class="mb-6 block shadow" @click="addAirport">
         <a href="/admin/airport/add-airport">Thêm sân bay</a></Button
       >
-      <Table class="mt-4 rounded-md bg-white shadow">
+      <Table class="mt-4 overflow-hidden rounded-lg border bg-background">
         <TableHeader>
           <TableRow>
             <TableHead>Tên sân bay</TableHead>

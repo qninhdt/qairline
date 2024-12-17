@@ -4,7 +4,7 @@
       <Button class="mb-6 block shadow">
         <a href="/admin/plane/add-plane">Thêm máy bay</a></Button
       >
-      <Table class="mt-4 rounded-md bg-white shadow">
+      <Table class="mt-4 overflow-hidden rounded-lg border bg-background">
         <TableHeader>
           <TableRow>
             <TableHead>STT</TableHead>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import QAirlineLogo from '../components/qairline-logo.vue'
+import AnimatedIcon from '../components/animated-icon.vue'
 
 import {
   DropdownMenu,
@@ -71,7 +72,7 @@ const data = {
 
 <template>
   <SidebarProvider>
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="offcanvas">
       <SideBarHeader class="m-auto p-6">
         <QAirlineLogo />
       </SideBarHeader>
@@ -81,7 +82,12 @@ const data = {
             <SidebarMenuItem>
               <SidebarMenuButton as-child>
                 <a href="/admin/">
-                  <component :is="SquareTerminal" />
+                  <AnimatedIcon
+                    :id="'home'"
+                    :size="32"
+                    class="text-accent"
+                    target="a"
+                  />
                   <span>Trang chủ</span>
                 </a>
               </SidebarMenuButton>
@@ -96,7 +102,12 @@ const data = {
               <SidebarMenuItem>
                 <CollapsibleTrigger as-child>
                   <SidebarMenuButton :tooltip="item.title">
-                    <component :is="item.icon" />
+                    <AnimatedIcon
+                      :id="'documents'"
+                      :size="32"
+                      class="text-accent"
+                      target="a"
+                    />
                     <span>{{ item.title }}</span>
                     <ChevronRight
                       class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
@@ -122,7 +133,12 @@ const data = {
             <SidebarMenuItem>
               <SidebarMenuButton as-child>
                 <a href="/admin/plane">
-                  <component :is="SquareTerminal" />
+                  <AnimatedIcon
+                    :id="'plane'"
+                    :size="32"
+                    class="text-accent"
+                    target="a"
+                  />
                   <span>Tàu bay</span>
                 </a>
               </SidebarMenuButton>
@@ -130,7 +146,12 @@ const data = {
             <SidebarMenuItem>
               <SidebarMenuButton as-child>
                 <a href="/admin/airport">
-                  <component :is="SquareTerminal" />
+                  <AnimatedIcon
+                    :id="'airport_runway'"
+                    :size="32"
+                    class="text-accent"
+                    target="a"
+                  />
                   <span>Sân bay</span>
                 </a>
               </SidebarMenuButton>
@@ -138,7 +159,12 @@ const data = {
             <SidebarMenuItem>
               <SidebarMenuButton as-child>
                 <a href="/admin/bookings">
-                  <component :is="SquareTerminal" />
+                  <AnimatedIcon
+                    :id="'travel_agency'"
+                    :size="32"
+                    class="text-accent"
+                    target="a"
+                  />
                   <span>Chuyến bay</span>
                 </a>
               </SidebarMenuButton>
@@ -242,7 +268,7 @@ const data = {
           </Breadcrumb>
         </div>
       </header>
-      <div class="h-screen space-y-6 bg-background p-4">
+      <div class="h-screen space-y-6 bg-muted p-4">
         <slot />
       </div>
     </SidebarInset>
