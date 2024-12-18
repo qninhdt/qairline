@@ -1,71 +1,67 @@
 <template>
-  <NavBarAdmin>
-    <div class="p-6">
-      <Button class="mb-6 block shadow">
-        <a href="/admin/plane/add-plane">Thêm máy bay</a></Button
-      >
-      <Table class="mt-4 overflow-hidden rounded-lg border bg-background">
-        <TableHeader>
-          <TableRow>
-            <TableHead>STT</TableHead>
-            <TableHead>Mẫu máy bay</TableHead>
-            <TableHead>Sức chứa</TableHead>
-            <TableHead>Ngày tạo</TableHead>
-            <TableHead>Ngày cập nhật</TableHead>
-            <TableHead>
-              <span class="sr-only">Actions</span>
-            </TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow v-for="(plane, index) in planes" :key="plane.id">
-            <TableCell class="font-medium">
-              {{ index + 1 }}
-            </TableCell>
-            <TableCell>
-              <Badge variant="outline">
-                {{ plane.model }}
-              </Badge>
-            </TableCell>
-            <TableCell class="hidden md:table-cell">
-              {{ plane.capacity }}
-            </TableCell>
-            <TableCell class="hidden md:table-cell">
-              {{ plane.created_at }}
-            </TableCell>
-            <TableCell class="hidden md:table-cell">
-              {{ plane.updated_at }}
-            </TableCell>
-            <TableCell>
-              <DropdownMenu>
-                <DropdownMenuTrigger as-child>
-                  <Button aria-haspopup="true" size="icon" variant="ghost">
-                    <MoreHorizontal class="h-4 w-4" />
-                    <span class="sr-only">Toggle menu</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuItem
-                    ><a
-                      href="/admin/plane/edit-plane/{{plane.id}}"
-                      class="w-full"
-                      >Sửa</a
-                    ></DropdownMenuItem
-                  >
-                  <DropdownMenuItem
-                    class="cursor-pointer"
-                    @click="deletePlane(plane.id)"
-                    >Xóa</DropdownMenuItem
-                  >
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </div>
-  </NavBarAdmin>
+  <div class="p-6">
+    <Button class="mb-6 block shadow">
+      <a href="/admin/plane/add-plane">Thêm máy bay</a></Button
+    >
+    <Table class="mt-4 overflow-hidden rounded-lg border bg-background">
+      <TableHeader>
+        <TableRow>
+          <TableHead>STT</TableHead>
+          <TableHead>Mẫu máy bay</TableHead>
+          <TableHead>Sức chứa</TableHead>
+          <TableHead>Ngày tạo</TableHead>
+          <TableHead>Ngày cập nhật</TableHead>
+          <TableHead>
+            <span class="sr-only">Actions</span>
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow v-for="(plane, index) in planes" :key="plane.id">
+          <TableCell class="font-medium">
+            {{ index + 1 }}
+          </TableCell>
+          <TableCell>
+            <Badge variant="outline">
+              {{ plane.model }}
+            </Badge>
+          </TableCell>
+          <TableCell class="hidden md:table-cell">
+            {{ plane.capacity }}
+          </TableCell>
+          <TableCell class="hidden md:table-cell">
+            {{ plane.created_at }}
+          </TableCell>
+          <TableCell class="hidden md:table-cell">
+            {{ plane.updated_at }}
+          </TableCell>
+          <TableCell>
+            <DropdownMenu>
+              <DropdownMenuTrigger as-child>
+                <Button aria-haspopup="true" size="icon" variant="ghost">
+                  <MoreHorizontal class="h-4 w-4" />
+                  <span class="sr-only">Toggle menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuItem
+                  ><a href="/admin/plane/edit-plane/{{plane.id}}" class="w-full"
+                    >Sửa</a
+                  ></DropdownMenuItem
+                >
+                <DropdownMenuItem
+                  class="cursor-pointer"
+                  @click="deletePlane(plane.id)"
+                  >Xóa</DropdownMenuItem
+                >
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </div>
 </template>
 
 <script setup lang="ts">

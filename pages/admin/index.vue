@@ -3,7 +3,7 @@ import AnimatedIcon from '../components/animated-icon.vue'
 </script>
 
 <template>
-  <NavBarAdmin>
+  <div>
     <div class="grid gap-4 bg-gray-100 p-6 md:grid-cols-2 lg:grid-cols-4">
       <Card>
         <CardHeader
@@ -97,5 +97,5 @@ import AnimatedIcon from '../components/animated-icon.vue'
         </CardContent>
       </Card>
     </div>
-  </NavBarAdmin>
+  </div>
 </template>
