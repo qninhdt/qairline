@@ -46,7 +46,15 @@ const ID_TO_LORDICON_ID: Record<string, string> = {
   plane: 'bijiyxta',
   search: 'wjyqkiew',
   user: 'kdduutaw',
-  filter: 'grsnlwmk'
+  filter: 'grsnlwmk',
+  dollar_coin: 'jijucvzh',
+  airplane_mode: 'xnitmjlc',
+  airport_runway: 'bltedbvj',
+  home: 'jeuxydnh',
+  documents: 'kzhwlhxg',
+  travel_agency: 'wvpcnsph',
+  sun: 'jyoxpoml',
+  moon: 'atcauaaj'
 }
 
 const iconStyle = computed(() => ({

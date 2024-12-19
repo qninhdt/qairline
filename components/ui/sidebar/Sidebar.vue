@@ -50,7 +50,7 @@ const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
       data-sidebar="sidebar"
       data-mobile="true"
       :side="side"
-      class="bg-sidebar text-sidebar-foreground w-[--sidebar-width] p-0 [&>button]:hidden"
+      class="text-sidebar-foreground w-[--sidebar-width] bg-background p-0 [&>button]:hidden"
       :style="{
         '--sidebar-width': SIDEBAR_WIDTH_MOBILE
       }"

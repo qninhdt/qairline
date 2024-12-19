@@ -1,55 +1,52 @@
 <template>
-  <NavBarAdmin>
-    <div class="h-screen overflow-y-scroll p-6">
-      <Button class="mb-6 block shadow" @click="addPost">
-        <a href="/admin/posts/sale/post-sale">Thêm bài đăng</a></Button
-      >
-      <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <Dialog v-for="post in posts" :key="post.title">
-          <DialogTrigger as-child>
-            <Card
-              class="m-6 inline-block w-auto transform cursor-pointer shadow-lg transition-shadow duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
-              style="aspect-ratio: 2 / 1"
-            >
-              <img
-                :src="post.image"
-                alt=""
-                class="h-[180px] w-full rounded-t-lg object-cover"
-              />
-              <CardHeader class="p-3">
-                <CardTitle class="inline text-sm">{{ post.title }}</CardTitle>
-                <CardDescription> Ngày tạo bài viết </CardDescription>
-                <Button
-                  class="float-right px-4 py-2 text-white shadow"
-                  @click="deletePost(post)"
-                  >Xóa</Button
-                >
-              </CardHeader>
-            </Card>
-          </DialogTrigger>
-          <DialogContent class="sm:max-w-md">
-            <ScrollArea class="max-h-[500px] p-3">
-              <DialogHeader>
-                <DialogTitle>{{ post.title }}</DialogTitle>
-                <DialogDescription> Ngày tạo bài viết </DialogDescription>
-              </DialogHeader>
-              <img
-                :src="post.image"
-                alt=""
-                class="h-[200px] w-full rounded-lg object-cover"
-              />
-              <p>{{ post.content }}</p>
-              <DialogFooter class="sm:justify-start">
-                <DialogClose as-child>
-                  <Button type="button" variant="secondary"> Close </Button>
-                </DialogClose>
-              </DialogFooter>
-            </ScrollArea>
-          </DialogContent>
-        </Dialog>
-      </div>
+  <div class="h-full p-6">
+    <Button class="mb-6 block shadow" @click="addPost">
+      <a href="/admin/posts/sale/post-sale">Thêm bài đăng</a></Button
+    >
+    <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <Dialog v-for="post in posts" :key="post.title">
+        <DialogTrigger as-child>
+          <Card
+            class="m-6 inline-block w-auto transform cursor-pointer shadow-lg transition-shadow duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
+          >
+            <img
+              :src="post.image"
+              alt=""
+              class="h-[180px] w-full rounded-t-lg object-cover"
+            />
+            <CardHeader class="p-3">
+              <CardTitle class="inline text-sm">{{ post.title }}</CardTitle>
+              <CardDescription> Ngày tạo bài viết </CardDescription>
+              <Button
+                class="float-right px-4 py-2 text-white shadow"
+                @click="deletePost(post)"
+                >Xóa</Button
+              >
+            </CardHeader>
+          </Card>
+        </DialogTrigger>
+        <DialogContent class="sm:max-w-md">
+          <ScrollArea class="max-h-[500px] p-3">
+            <DialogHeader>
+              <DialogTitle>{{ post.title }}</DialogTitle>
+              <DialogDescription> Ngày tạo bài viết </DialogDescription>
+            </DialogHeader>
+            <img
+              :src="post.image"
+              alt=""
+              class="h-[200px] w-full rounded-lg object-cover"
+            />
+            <p>{{ post.content }}</p>
+            <DialogFooter class="sm:justify-start">
+              <DialogClose as-child>
+                <Button type="button" variant="secondary"> Close </Button>
+              </DialogClose>
+            </DialogFooter>
+          </ScrollArea>
+        </DialogContent>
+      </Dialog>
     </div>
-  </NavBarAdmin>
+  </div>
 </template>
 
 <script setup lang="ts">

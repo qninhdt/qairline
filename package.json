@@ -26,6 +26,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "css-doodle": "^0.40.8",
+    "embla-carousel-autoplay": "^8.5.1",
     "embla-carousel-vue": "^8.5.1",
     "faker": "^6.6.6",
     "firebase": "^11.0.2",
