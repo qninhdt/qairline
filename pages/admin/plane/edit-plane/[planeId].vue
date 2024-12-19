@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="h-screen space-y-4 overflow-y-scroll p-6">
+  <div class="space-y-4 overflow-y-scroll p-6">
     <a href="/admin/plane/">
       <Button variant="outline" size="icon">
         <span>&lt;</span>

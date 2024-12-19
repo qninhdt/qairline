@@ -4,7 +4,7 @@ import AnimatedIcon from '../components/animated-icon.vue'
 
 <template>
   <div>
-    <div class="grid gap-4 bg-gray-100 p-6 md:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-4 p-6 md:grid-cols-2 lg:grid-cols-4">
       <Card>
         <CardHeader
           class="flex flex-row items-center justify-between space-y-0 pb-2"

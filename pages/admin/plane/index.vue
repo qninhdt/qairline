@@ -26,13 +26,13 @@
               {{ plane.model }}
             </Badge>
           </TableCell>
-          <TableCell class="hidden md:table-cell">
+          <TableCell>
             {{ plane.capacity }}
           </TableCell>
-          <TableCell class="hidden md:table-cell">
+          <TableCell>
             {{ plane.created_at }}
           </TableCell>
-          <TableCell class="hidden md:table-cell">
+          <TableCell>
             {{ plane.updated_at }}
           </TableCell>
           <TableCell>

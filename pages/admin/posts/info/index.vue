@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen overflow-y-scroll p-6">
+  <div class="h-full p-6">
     <Button class="mb-6 block shadow" @click="addPost">
       <a href="/admin/posts/info/post-info">Thêm bài đăng</a></Button
     >
@@ -8,7 +8,6 @@
         <DialogTrigger as-child>
           <Card
             class="m-6 inline-block w-auto transform cursor-pointer shadow-lg transition-shadow duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
-            style="aspect-ratio: 2 / 1"
           >
             <img
               :src="post.image"

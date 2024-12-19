@@ -32,8 +32,8 @@ import {
           <TableCell>
             <Badge variant="outline"> Draft </Badge>
           </TableCell>
-          <TableCell class="hidden md:table-cell"> $499.99 </TableCell>
-          <TableCell class="hidden md:table-cell"> 25 </TableCell>
+          <TableCell> $499.99 </TableCell>
+          <TableCell> 25 </TableCell>
         </TableRow>
       </TableBody>
     </Table>

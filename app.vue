@@ -33,5 +33,6 @@ const showNavBarAdmin = computed(() => {
   <div v-else>
     <NavBar v-if="showNavBar" />
     <NuxtPage />
+    <FooterForm />
   </div>
 </template>

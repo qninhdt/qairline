@@ -150,7 +150,7 @@ const services = [
               <img
                 :src="value.image"
                 alt=""
-                class="h-[200px] w-full object-cover"
+                class="h-[200px] w-full rounded-lg object-cover"
               />
               <h3 class="text-[20px] font-semibold text-black">
                 {{ value.title }}
@@ -186,7 +186,7 @@ const services = [
               <img
                 :src="service.image"
                 alt=""
-                class="h-[200px] w-full object-cover"
+                class="h-[200px] w-full rounded-lg object-cover"
               />
               <h3 class="text-[20px] font-semibold text-black">
                 {{ service.title }}

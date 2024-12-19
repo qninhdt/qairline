@@ -54,10 +54,10 @@ const deleteAirport = (id) => {
           <TableCell>
             {{ airport.city }}
           </TableCell>
-          <TableCell class="hidden md:table-cell">
+          <TableCell>
             {{ airport.country }}
           </TableCell>
-          <TableCell class="hidden md:table-cell">
+          <TableCell>
             {{ airport.iata }}
           </TableCell>
           <TableCell>
