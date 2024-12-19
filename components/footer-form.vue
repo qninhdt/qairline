@@ -1,72 +1,69 @@
 <template>
-  <div
-    class="absolute mb-[0px] ml-[0px] h-[290px] w-full rounded-none bg-[#F8F9FAFF]"
-  >
-    <div>
-      <router-link
-        to="/"
-        class="font-['Sarabun] absolute ml-[292px] mt-[79px] text-[20px] font-semibold leading-[30px] text-[#6C6CFFFF]"
-        >QAirline</router-link
-      >
+  <div class="space-y-4 bg-muted pt-5">
+    <div class="m-auto flex items-center justify-center gap-2 px-4">
+      <QAirlineLogo />
+      <Separator orientation="vertical" class="mr-2 h-4" />
+      <span>VUI TỪNG CHUYẾN BAY</span>
     </div>
-    <input
-      id=""
-      type="text"
-      name=""
-      class="font-sm absolute ml-[246px] mt-[134px] h-[36px] w-[224px] rounded-[18px] border border-solid border-[#BCC1CAFF] bg-white pl-[34px] font-['Sarabun'] font-normal leading-[22px] opacity-100 hover:border-[#A7ADB7FF]"
-      placeholder="Input your email"
-    />
-    <button
-      class="font-sm absolute ml-[479px] mt-[134px] h-[36px] w-[87px] items-center justify-center rounded-[18px] border-none bg-[#11D396FF] px-3 font-['Sarabun'] font-normal leading-[22px] text-white opacity-100"
-    >
-      Subcribe
-    </button>
-    <div
-      class="absolute ml-[716px] mt-[74px] font-['Sarabun'] text-[20px] font-bold leading-[30px] text-[#171A1FFF]"
-    >
-      About us
+    <Separator />
+    <div class="grid gap-4 p-6 text-center md:grid-cols-2 lg:grid-cols-4">
+      <ul>
+        <h1 class="text-[20px] text-primary">QAirline</h1>
+        <li>
+          <a href="/docs/introduction" class="hover:underline">Về chúng tôi</a>
+        </li>
+      </ul>
+      <ul>
+        <h1 class="text-[20px] text-primary">Khám phá</h1>
+        <li><a href="/explore/hanoi" class="hover:underline">Hà Nội</a></li>
+        <li><a href="/explore/bangkok" class="hover:underline">Bangkok</a></li>
+        <li>
+          <a href="/explore/new-york" class="hover:underline">New York</a>
+        </li>
+        <li><a href="/explore/paris" class="hover:underline">Paris</a></li>
+      </ul>
+      <ul>
+        <h1 class="text-[20px] text-primary">Dịch vụ</h1>
+        <li>
+          <a href="/services/book-ticket" class="hover:underline">Đặt vé</a>
+        </li>
+        <li>
+          <a href="/services/transport" class="hover:underline">Hành lý</a>
+        </li>
+        <li>
+          <a href="/services/restaurant" class="hover:underline"
+            >Nhà hàng "trên không"</a
+          >
+        </li>
+        <li>
+          <a href="/services/network" class="hover:underline">Kết nối mạng</a>
+        </li>
+        <li>
+          <a href="/services/customs" class="hover:underline"
+            >Thủ tục hải quan</a
+          >
+        </li>
+        <li>
+          <a href="/servicescustomer-service" class="hover:underline"
+            >Dịch vụ khách hàng</a
+          >
+        </li>
+      </ul>
+      <ul>
+        <h1 class="text-[20px] text-primary">Liên hệ</h1>
+        <li>Facebook</li>
+        <li>Instagram</li>
+      </ul>
     </div>
-    <div>
-      <router-link
-        to="/"
-        class="absolute ml-[716px] mt-[116px] font-['Sarabun'] text-[14px] font-normal leading-[22px] text-[#171A1FFF]"
-        >How to book</router-link
-      >
-    </div>
-    <div>
-      <router-link
-        to="/"
-        class="absolute ml-[716px] mt-[150px] font-['Sarabun'] text-[14px] font-normal leading-[22px] text-[#171A1FFF]"
-        >Help center</router-link
-      >
-    </div>
-    <div
-      class="absolute ml-[901px] mt-[74px] font-['Sarabun'] text-[20px] font-bold leading-[30px] text-[#171A1FFF]"
-    >
-      Flight
-    </div>
-    <div>
-      <router-link
-        to="/"
-        class="absolute ml-[901px] mt-[116px] font-['Sarabun'] text-[14px] font-normal leading-[22px] text-[#171A1FFF]"
-        >Book easily</router-link
-      >
-    </div>
-    <div>
-      <router-link
-        to="/"
-        class="absolute ml-[901px] mt-[150px] font-['Sarabun'] text-[14px] font-normal leading-[22px] text-[#171A1FFF]"
-        >Promotions</router-link
-      >
-    </div>
-    <div
-      class="absolute ml-[1078px] mt-[74px] font-['Sarabun'] text-[20px] font-bold leading-[30px] text-[#171A1FFF]"
-    >
-      Contact us
+    <div class="text-center text-gray-500">
+      <p>© 202s QAirline. All rights reserved.</p>
+      <p>Địa chỉ: 144 Xuân Thủy, Hà Nội</p>
+      <p>Hotline: 1900 1234</p>
     </div>
   </div>
 </template>
 
-<script setup></script>
-
-<style lang="scss" scoped></style>
+<script setup lang="ts">
+import QAirlineLogo from '@/components/qairline-logo.vue'
+import Separator from '@/components/ui/separator/Separator.vue'
+</script>
