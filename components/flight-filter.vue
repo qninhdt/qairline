@@ -18,40 +18,6 @@ const priceToStr = (price: number) => {
 
 <template>
   <div>
-    <!-- <div class="mb-8">
-      <Separator label="Loại chuyến bay" class="mb-4" />
-      <div class="flex space-x-2">
-        <Button
-          :variant="type === 'one-way' ? 'default' : 'outline'"
-          class="w-[50%]"
-          @click="type = 'one-way'"
-          >Một chiều</Button
-        >
-        <Button
-          :variant="type === 'round-trip' ? 'default' : 'outline'"
-          class="w-[50%]"
-          @click="type = 'round-trip'"
-          >Khứ hồi</Button
-        >
-      </div>
-    </div>
-    <div class="mb-8">
-      <Separator label="Loại ghế" class="mb-4" />
-      <div class="flex space-x-2">
-        <Button
-          :variant="classType === 'economy' ? 'default' : 'outline'"
-          class="w-[50%]"
-          @click="classType = 'economy'"
-          >Phổ thông</Button
-        >
-        <Button
-          :variant="classType === 'business' ? 'default' : 'outline'"
-          class="w-[50%]"
-          @click="classType = 'business'"
-          >Thương gia</Button
-        >
-      </div>
-    </div> -->
     <div class="mb-8">
       <Separator label="Ngân sách" class="mb-6" />
       <div class="mx-auto flex w-[75%] flex-col space-y-2">
@@ -76,7 +42,7 @@ const priceToStr = (price: number) => {
     </div>
     <div class="mb-8">
       <Separator label="Sắp xếp theo" class="mb-4" />
-      <div class="px-16">
+      <div class="px-8">
         <RadioGroup default-value="comfortable">
           <div class="flex items-center space-x-2">
             <RadioGroupItem id="r1" value="default" />
@@ -99,7 +65,7 @@ const priceToStr = (price: number) => {
     </div>
     <div class="mb-8">
       <Separator label="Khuyễn mãi / Ưu đãi" class="mb-4" />
-      <div class="px-16">
+      <div class="px-8">
         <div>
           <div class="mb-2 flex items-center space-x-2">
             <Checkbox />
