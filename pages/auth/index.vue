@@ -4,7 +4,7 @@
     <h1 class="text-2xl font-semibold tracking-tight">
       Sẵn sàng bay cùng <span class="text-primary">QAirline</span>?
     </h1>
-    <p class="text-sm text-muted-foreground">Nhập email của bạn để tiếp tục</p>
+
     <LoginForm />
     <p class="mt-2 px-8 text-center text-sm text-muted-foreground">
       Bằng cách nhấn Tiếp tục, bạn đồng ý với

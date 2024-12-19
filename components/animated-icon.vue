@@ -52,7 +52,9 @@ const ID_TO_LORDICON_ID: Record<string, string> = {
   airport_runway: 'bltedbvj',
   home: 'jeuxydnh',
   documents: 'kzhwlhxg',
-  travel_agency: 'wvpcnsph'
+  travel_agency: 'wvpcnsph',
+  sun: 'jyoxpoml',
+  moon: 'atcauaaj'
 }
 
 const iconStyle = computed(() => ({
