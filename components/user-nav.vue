@@ -19,9 +19,9 @@ import { Separator } from '../components/ui/separator'
 import AnimatedIcon from '../components/animated-icon.vue'
 
 const LINKS = [
-  { name: 'Profile', url: '/profile', icon: 'circle_avatar' },
-  { name: 'Billing', url: '/billing', icon: 'receipt_dollar' },
-  { name: 'Settings', url: '/settings', icon: 'cog' }
+  { name: 'Thông tin cá nhân', url: '/profile', icon: 'circle_avatar' },
+  { name: 'Vé đã đặt', url: '/billing', icon: 'receipt_dollar' },
+  { name: 'Cài đặt', url: '/settings', icon: 'cog' }
 ]
 </script>
 
@@ -85,7 +85,7 @@ const LINKS = [
                   :size="16"
                   target=".user-menu-item-logout"
                 />
-                <span class="text-sm font-medium">Log out</span>
+                <span class="text-sm font-medium">Đăng xuất</span>
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@ const LINKS = [
               id="logout"
               :size="16"
               target=".user-menu-item-logout"
-            />Log out</DropdownMenuItem
+            />Đăng xuất</DropdownMenuItem
           >
         </DropdownMenuContent>
       </DropdownMenu>
