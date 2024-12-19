@@ -85,8 +85,8 @@ const value = ref({
       </RadioGroup>
       <Label class="block">Giảm giá</Label>
       <Input type="text"></Input>
-      <Label class="block">Ảnh bài viết</Label>
-      <Input type="file" />
+      <Label class="block">Link ảnh bài viết</Label>
+      <Input type="text" required />
       <Button class="mr-4 mt-4">Đăng bài</Button>
       <a href="/admin/posts/sale"
         ><Button class="mt-4" variant="secondary">Hủy</Button></a
