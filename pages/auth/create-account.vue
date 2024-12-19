@@ -1,19 +1,14 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
+import { useToast } from '@/components/ui/toast/use-toast'
+import { registerWithEmailAndPassword } from '../../core/firebase'
 
 const avatar = ref<string | null>(null)
+
+const router = useRouter()
+const { toast } = useToast()
 
 const formSchema: any = toTypedSchema(
   z.object({
@@ -44,8 +39,23 @@ const handleAvatarUpload = (event: Event) => {
   }
 }
 
-const onSubmit = handleSubmit((values) => {
-  console.log(values)
+const onSubmit = handleSubmit(async (values) => {
+  if (localStorage.getItem('email') == null) {
+    router.push('/auth')
+    return
+  }
+
+  values.email = localStorage.getItem('email')
+  const ok = await registerWithEmailAndPassword(values)
+
+  if (ok) {
+    router.push('/')
+  } else {
+    toast({
+      title: 'Đã xảy ra lỗi',
+      variant: 'destructive'
+    })
+  }
 })
 </script>
 

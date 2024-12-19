@@ -17,6 +17,7 @@ import {
 } from '../components/ui/drawer'
 import { Separator } from '../components/ui/separator'
 import AnimatedIcon from '../components/animated-icon.vue'
+import { logout, user } from '../core/firebase'
 
 const LINKS = [
   { name: 'Thông tin cá nhân', url: '/profile', icon: 'circle_avatar' },
@@ -35,10 +36,7 @@ const LINKS = [
             class="h-8 w-8 rounded-full outline-dashed outline-2 outline-offset-2 outline-primary"
           >
             <Avatar class="h-8 w-8">
-              <AvatarImage
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4dn0O2r3-rdH1GQFygZrIrbWAANcX7Qdgvg&s"
-              />
-              <AvatarFallback>SC</AvatarFallback>
+              <AvatarImage src="https://storyset.com/images/avatar-bro.svg" />
             </Avatar>
           </Button>
         </DrawerTrigger>
@@ -46,15 +44,14 @@ const LINKS = [
           <DrawerHeader>
             <div class="flex items-center space-x-2">
               <Avatar class="h-8 w-8">
-                <AvatarImage
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4dn0O2r3-rdH1GQFygZrIrbWAANcX7Qdgvg&s"
-                />
-                <AvatarFallback>SC</AvatarFallback>
+                <AvatarImage src="https://storyset.com/images/avatar-bro.svg" />
               </Avatar>
               <div class="flex flex-col space-y-1">
-                <p class="text-left text-sm font-medium leading-none">shadcn</p>
+                <p class="text-left text-sm font-medium leading-none">
+                  {{ user.name }}
+                </p>
                 <p class="text-left text-xs leading-none text-muted-foreground">
-                  m@example.com
+                  {{ user.email }}
                 </p>
               </div>
             </div>
@@ -78,7 +75,7 @@ const LINKS = [
           </div>
           <Separator />
           <div class="flex flex-col space-y-2 p-2">
-            <div class="user-menu-item-logout p-1 px-4">
+            <div class="user-menu-item-logout p-1 px-4" @click="logout">
               <div class="items center flex space-x-2">
                 <AnimatedIcon
                   id="logout"
@@ -102,7 +99,7 @@ const LINKS = [
             <Avatar class="h-8 w-8">
               <AvatarImage
                 class="outline-dotted outline-2 outline-offset-2 outline-primary"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4dn0O2r3-rdH1GQFygZrIrbWAANcX7Qdgvg&s"
+                src="https://storyset.com/images/avatar-bro.svg"
               />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
@@ -111,9 +108,9 @@ const LINKS = [
         <DropdownMenuContent class="w-56" align="end">
           <DropdownMenuLabel class="flex font-normal">
             <div class="flex flex-col space-y-1">
-              <p class="text-sm font-medium leading-none">shadcn</p>
+              <p class="text-sm font-medium leading-none">{{ user.name }}</p>
               <p class="text-xs leading-none text-muted-foreground">
-                m@example.com
+                {{ user.email }}
               </p>
             </div>
           </DropdownMenuLabel>
@@ -127,7 +124,7 @@ const LINKS = [
             {{ link.name }}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem class="user-menu-item-logout"
+          <DropdownMenuItem class="user-menu-item-logout" @click="logout"
             ><AnimatedIcon
               id="logout"
               :size="16"

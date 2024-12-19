@@ -35,4 +35,5 @@ const showNavBarAdmin = computed(() => {
     <NuxtPage />
     <!-- <FooterForm /> -->
   </div>
+  <Toaster />
 </template>
