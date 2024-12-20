@@ -3,53 +3,14 @@ import QAirlineLogo from '../components/qairline-logo.vue'
 import AnimatedIcon from '../components/animated-icon.vue'
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import { Separator } from '@/components/ui/separator'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger
-} from '@/components/ui/collapsible'
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarProvider,
-  SidebarRail,
-  SidebarTrigger
-} from '@/components/ui/sidebar'
-import {
-  BadgeCheck,
-  Bell,
   ChevronRight,
   ChevronsUpDown,
-  CreditCard,
   LogOut,
   SquareTerminal
 } from 'lucide-vue-next'
+import { logout, user } from '../core/firebase'
 
-// This is sample data.
 const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg'
-  },
   navMain: [
     {
       title: 'Tin tức',
@@ -84,7 +45,7 @@ const data = {
                 <router-link to="/admin/" active-class="bg-muted">
                   <AnimatedIcon
                     :id="'home'"
-                    :size="32"
+                    :size="24"
                     class="text-accent"
                     target="a"
                   />
@@ -104,7 +65,7 @@ const data = {
                   <SidebarMenuButton :tooltip="item.title">
                     <AnimatedIcon
                       :id="'documents'"
-                      :size="32"
+                      :size="24"
                       class="text-accent"
                       target="a"
                     />
@@ -135,7 +96,7 @@ const data = {
                 <router-link to="/admin/plane" active-class="bg-muted">
                   <AnimatedIcon
                     :id="'plane'"
-                    :size="32"
+                    :size="24"
                     class="text-accent"
                     target="a"
                   />
@@ -148,7 +109,7 @@ const data = {
                 <router-link to="/admin/airport" active-class="bg-muted">
                   <AnimatedIcon
                     :id="'airport_runway'"
-                    :size="32"
+                    :size="24"
                     class="text-accent"
                     target="a"
                   />
@@ -161,7 +122,7 @@ const data = {
                 <router-link to="/admin/bookings" active-class="bg-muted">
                   <AnimatedIcon
                     :id="'travel_agency'"
-                    :size="32"
+                    :size="24"
                     class="text-accent"
                     target="a"
                   />
@@ -183,16 +144,12 @@ const data = {
                 >
                   <Avatar class="h-8 w-8 rounded-lg">
                     <AvatarImage
-                      :src="data.user.avatar"
-                      :alt="data.user.name"
+                      src="https://storyset.com/images/avatar-bro.svg"
                     />
-                    <AvatarFallback class="rounded-lg"> CN </AvatarFallback>
                   </Avatar>
                   <div class="grid flex-1 text-left text-sm leading-tight">
-                    <span class="truncate font-semibold">{{
-                      data.user.name
-                    }}</span>
-                    <span class="truncate text-xs">{{ data.user.email }}</span>
+                    <span class="truncate font-semibold">{{ user.name }}</span>
+                    <span class="truncate text-xs">{{ user.email }}</span>
                   </div>
                   <ChevronsUpDown class="ml-auto size-4" />
                 </SidebarMenuButton>
@@ -209,40 +166,22 @@ const data = {
                   >
                     <Avatar class="h-8 w-8 rounded-lg">
                       <AvatarImage
-                        :src="data.user.avatar"
-                        :alt="data.user.name"
+                        src="https://storyset.com/images/avatar-bro.svg"
                       />
-                      <AvatarFallback class="rounded-lg"> CN </AvatarFallback>
                     </Avatar>
                     <div class="grid flex-1 text-left text-sm leading-tight">
                       <span class="truncate font-semibold">{{
-                        data.user.name
+                        user.name
                       }}</span>
-                      <span class="truncate text-xs">{{
-                        data.user.email
-                      }}</span>
+                      <span class="truncate text-xs">{{ user.email }}</span>
                     </div>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <BadgeCheck />
-                    Account
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <CreditCard />
-                    Billing
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Bell />
-                    Notifications
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
+
+                <DropdownMenuItem @click="logout">
                   <LogOut />
-                  Log out
+                  Đăng xuất
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

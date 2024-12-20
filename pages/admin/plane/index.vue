@@ -1,39 +1,48 @@
+<script setup lang="ts">
+import { deletePlane, getPlanes } from '../../../core/firebase'
+import { MoreHorizontal } from 'lucide-vue-next'
+import { useToast } from '../../../components/ui/toast'
+
+const planes = ref([])
+const { toast } = useToast()
+
+onMounted(async () => {
+  planes.value = await getPlanes()
+})
+
+const deletePlane_ = async (id: any) => {
+  await deletePlane(id)
+  planes.value = await getPlanes()
+  toast({
+    title: 'Sân bay đã được xóa'
+  })
+}
+</script>
+
 <template>
   <div class="p-6">
-    <Button class="mb-6 block shadow">
-      <a href="/admin/plane/add-plane">Thêm máy bay</a></Button
+    <Button class="mb-6 block shadow" @click="addPlane">
+      <a href="/admin/plane/add-plane">Thêm sân bay</a></Button
     >
     <Table class="mt-4 overflow-hidden rounded-lg border bg-background">
       <TableHeader>
         <TableRow>
-          <TableHead>STT</TableHead>
-          <TableHead>Mẫu máy bay</TableHead>
+          <TableHead>Tên máy bay</TableHead>
+          <TableHead>Mã máy bay</TableHead>
           <TableHead>Sức chứa</TableHead>
-          <TableHead>Ngày tạo</TableHead>
-          <TableHead>Ngày cập nhật</TableHead>
           <TableHead>
             <span class="sr-only">Hành động</span>
           </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow v-for="(plane, index) in planes" :key="plane.id">
-          <TableCell class="font-medium">
-            {{ index + 1 }}
-          </TableCell>
+        <TableRow v-for="plane in planes" :key="plane.id">
+          <TableCell class="font-medium"> {{ plane.name }} </TableCell>
           <TableCell>
-            <Badge variant="outline">
-              {{ plane.model }}
-            </Badge>
+            {{ plane.code }}
           </TableCell>
           <TableCell>
             {{ plane.capacity }}
-          </TableCell>
-          <TableCell>
-            {{ plane.created_at }}
-          </TableCell>
-          <TableCell>
-            {{ plane.updated_at }}
           </TableCell>
           <TableCell>
             <DropdownMenu>
@@ -46,13 +55,15 @@
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Hành động</DropdownMenuLabel>
                 <DropdownMenuItem
-                  ><a href="/admin/plane/edit-plane/{{plane.id}}" class="w-full"
+                  ><a
+                    :href="`/admin/plane/edit-plane/${plane.id}`"
+                    class="w-full"
                     >Sửa</a
                   ></DropdownMenuItem
                 >
                 <DropdownMenuItem
                   class="cursor-pointer"
-                  @click="deletePlane(plane.id)"
+                  @click="deletePlane_(plane.id)"
                   >Xóa</DropdownMenuItem
                 >
               </DropdownMenuContent>
@@ -63,58 +74,3 @@
     </Table>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from '@/components/ui/table'
-import { MoreHorizontal } from 'lucide-vue-next'
-// remove setup function
-const formatDate = (date) => {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' }
-  return new Date(date).toLocaleString('vi-VN', options)
-}
-const planes = ref([
-  {
-    id: 1,
-    model: 'Airbus A320',
-    capacity: 180,
-    created_at: formatDate('2024-01-01T00:00:00Z'),
-    updated_at: formatDate('2024-01-10T00:00:00Z')
-  },
-  {
-    id: 2,
-    model: 'Boeing 737',
-    capacity: 210,
-    created_at: formatDate('2024-01-02T00:00:00Z'),
-    updated_at: formatDate('2024-01-11T00:00:00Z')
-  },
-  {
-    id: 3,
-    model: 'Embraer E190',
-    capacity: 100,
-    created_at: formatDate('2024-01-03T00:00:00Z'),
-    updated_at: formatDate('2024-01-12T00:00:00Z')
-  }
-])
-
-const deletePlane = (id) => {
-  planes.value = planes.value.filter((plane) => plane.id !== id)
-}
-
-// remove closing braces
-</script>

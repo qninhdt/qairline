@@ -15,19 +15,23 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
+import { deleteAirport, getAirports } from '../../../core/firebase'
 import { MoreHorizontal } from 'lucide-vue-next'
+import { useToast } from '../../../components/ui/toast'
 
-const airports = ref([
-  {
-    id: 1,
-    name: 'Laser Lemonade Machine',
-    city: 'Draft',
-    country: 'USA',
-    iata: 'LLM'
-  }
-])
-const deleteAirport = (id) => {
-  airports.value = airports.value.filter((airport) => airport.id !== id)
+const airports = ref([])
+const { toast } = useToast()
+
+onMounted(async () => {
+  airports.value = await getAirports()
+})
+
+const deleteAirport_ = async (id: any) => {
+  await deleteAirport(id)
+  airports.value = await getAirports()
+  toast({
+    title: 'Sân bay đã được xóa'
+  })
 }
 </script>
 
@@ -58,7 +62,7 @@ const deleteAirport = (id) => {
             {{ airport.country }}
           </TableCell>
           <TableCell>
-            {{ airport.iata }}
+            {{ airport.code }}
           </TableCell>
           <TableCell>
             <DropdownMenu>
@@ -72,14 +76,14 @@ const deleteAirport = (id) => {
                 <DropdownMenuLabel>Hành động</DropdownMenuLabel>
                 <DropdownMenuItem
                   ><a
-                    href="/admin/airport/edit-airport/{{airport.id}}"
+                    :href="`/admin/airport/edit-airport/${airport.id}`"
                     class="w-full"
                     >Sửa</a
                   ></DropdownMenuItem
                 >
                 <DropdownMenuItem
                   class="cursor-pointer"
-                  @click="deleteAirport(airport.id)"
+                  @click="deleteAirport_(airport.id)"
                   >Xóa</DropdownMenuItem
                 >
               </DropdownMenuContent>
