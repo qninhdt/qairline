@@ -12,7 +12,7 @@
           <TableHead>Ngày tạo</TableHead>
           <TableHead>Ngày cập nhật</TableHead>
           <TableHead>
-            <span class="sr-only">Actions</span>
+            <span class="sr-only">Hành động</span>
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -44,7 +44,7 @@
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuLabel>Hành động</DropdownMenuLabel>
                 <DropdownMenuItem
                   ><a href="/admin/plane/edit-plane/{{plane.id}}" class="w-full"
                     >Sửa</a
