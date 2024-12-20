@@ -80,7 +80,7 @@
 
     <!-- Buttons: Xóa và Sửa -->
     <div v-if="!showEditForm" class="flex justify-end space-x-4">
-      <Button class="rounded-lg px-4 py-2 text-white" @click="confirmDelete">
+      <Button class="rounded-lg px-4 py-2 text-white" @click="deleteFlight">
         Xóa
       </Button>
       <Button class="rounded-lg px-4 py-2 text-white">
@@ -239,32 +239,6 @@
           </Button>
         </div>
       </form>
-    </div>
-
-    <!-- Modal xác nhận xóa -->
-    <div
-      v-if="showDeleteConfirm"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50"
-    >
-      <div class="rounded-lg bg-white p-6 shadow-lg">
-        <h2 class="mb-4 text-lg font-bold text-gray-700">
-          Bạn có chắc muốn xóa?
-        </h2>
-        <div class="flex justify-end space-x-4">
-          <Button
-            class="rounded-lg bg-red-500 px-4 py-2 text-white"
-            @click="deleteFlight"
-          >
-            Có
-          </Button>
-          <Button
-            class="rounded-lg px-4 py-2 text-gray-700"
-            @click="cancelDelete"
-          >
-            Không
-          </Button>
-        </div>
-      </div>
     </div>
   </div>
 </template>
