@@ -14,7 +14,7 @@ const deletePlane_ = async (id: any) => {
   await deletePlane(id)
   planes.value = await getPlanes()
   toast({
-    title: 'Sân bay đã được xóa'
+    title: 'Máy bay đã được xóa'
   })
 }
 </script>
@@ -22,7 +22,7 @@ const deletePlane_ = async (id: any) => {
 <template>
   <div class="p-6">
     <Button class="mb-6 block shadow" @click="addPlane">
-      <a href="/admin/plane/add-plane">Thêm sân bay</a></Button
+      <a href="/admin/plane/add-plane">Thêm máy bay</a></Button
     >
     <Table class="mt-4 overflow-hidden rounded-lg border bg-background">
       <TableHeader>

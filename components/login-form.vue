@@ -50,7 +50,7 @@ async function onSubmit(event: Event) {
 <template>
   <div class="flex flex-col">
     <p class="text-sm text-muted-foreground">
-      Nhập {{ passwordPhase ? 'email' : 'mật khẩu' }} của bạn để tiếp tục
+      Nhập {{ passwordPhase ? 'mật khẩu' : 'email' }} của bạn để tiếp tục
     </p>
     <form class="mb-6" @submit="onSubmit">
       <Label class="sr-only" for="email"> Email </Label>
