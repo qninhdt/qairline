@@ -20,8 +20,8 @@ const df = new DateFormatter('en-US', {
 })
 
 const value = ref({
-  start: new CalendarDate(2022, 1, 20),
-  end: new CalendarDate(2022, 1, 20).add({ days: 20 })
+  start: new CalendarDate(2024, 1, 20),
+  end: new CalendarDate(2024, 1, 20).add({ days: 20 })
 }) as Ref<DateRange>
 </script>
 

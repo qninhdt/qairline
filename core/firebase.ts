@@ -40,7 +40,8 @@ const db = getFirestore(firebaseApp)
 export const auth = getAuth(firebaseApp)
 
 export const usersRef = collection(db, 'users')
-export const postsRef = collection(db, 'posts')
+export const infosRef = collection(db, 'infos')
+export const salesRef = collection(db, 'sales')
 export const planesRef = collection(db, 'planes')
 export const airportsRef = collection(db, 'airports')
 export const flightsRef = collection(db, 'flights')
@@ -122,6 +123,10 @@ export async function addFlight(flight: any) {
 export async function addBooking(booking: any) {
   await addDoc(bookingsRef, booking)
 }
+
+export async function addInfo(info: any) {
+  await addDoc(infosRef, info)
+}
 // Fetch all airports and include their IDs
 export async function getAirports() {
   const querySnapshot = await getDocs(airportsRef)
@@ -147,8 +152,13 @@ export async function getBookings() {
 }
 
 // Fetch all posts and include their IDs
-export async function getPosts() {
-  const querySnapshot = await getDocs(postsRef)
+export async function getInfos() {
+  const querySnapshot = await getDocs(infosRef)
+  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+}
+
+export async function getSales() {
+  const querySnapshot = await getDocs(salesRef)
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
 }
 
@@ -185,8 +195,15 @@ export async function getBookingById(id: string) {
 }
 
 // Fetch a post by ID and include its ID
-export async function getPostById(id: string) {
-  const q = doc(db, 'posts', id)
+export async function getInfoById(id: string) {
+  const q = doc(db, 'infos', id)
+  const querySnapshot = await getDoc(q)
+  const d = querySnapshot
+  return d ? { id: d.id, ...d.data() } : null
+}
+
+export async function getSaleById(id: string) {
+  const q = doc(db, 'sales', id)
   const querySnapshot = await getDoc(q)
   const d = querySnapshot
   return d ? { id: d.id, ...d.data() } : null
@@ -242,6 +259,41 @@ export async function deleteFlight(id: string) {
     console.log(`Flight with id: ${id} has been deleted.`)
   } catch (error) {
     console.error('Error deleting flight:', error)
+    throw error
+  }
+}
+
+// Delete a post by ID
+export async function deleteInfo(id: string) {
+  try {
+    const q = doc(db, 'infos', id)
+    const querySnapshot = await getDoc(q)
+
+    if (!querySnapshot.exists()) {
+      throw new Error(`No info found with id: ${id}`)
+    }
+
+    await deleteDoc(q)
+    console.log(`Info with id: ${id} has been deleted.`)
+  } catch (error) {
+    console.error('Error deleting info:', error)
+    throw error
+  }
+}
+
+export async function deleteSale(id: string) {
+  try {
+    const q = doc(db, 'sales', id)
+    const querySnapshot = await getDoc(q)
+
+    if (!querySnapshot.exists()) {
+      throw new Error(`No sale found with id: ${id}`)
+    }
+
+    await deleteDoc(q)
+    console.log(`Sale with id: ${id} has been deleted.`)
+  } catch (error) {
+    console.error('Error deleting sale:', error)
     throw error
   }
 }
