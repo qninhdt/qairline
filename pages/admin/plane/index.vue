@@ -31,7 +31,7 @@ const deletePlane_ = async (id: any) => {
           <TableHead>Mã máy bay</TableHead>
           <TableHead>Sức chứa</TableHead>
           <TableHead>
-            <span class="sr-only">Actions</span>
+            <span class="sr-only">Hành động</span>
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -53,7 +53,7 @@ const deletePlane_ = async (id: any) => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuLabel>Hành động</DropdownMenuLabel>
                 <DropdownMenuItem
                   ><a
                     :href="`/admin/plane/edit-plane/${plane.id}`"
