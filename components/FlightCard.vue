@@ -71,11 +71,10 @@
       <div class="text-sm text-gray-600">
         Hành khách: {{ flight.passengers.length }}
       </div>
-      <button
-        class="text-blue-500 underline hover:text-blue-700"
-        @click="togglePassengerList"
-      >
-        Xem chi tiết
+      <button class="text-blue-500 underline hover:text-blue-700">
+        <a href="/admin/bookings/customers/{{flight.id}}" class="w-full"
+          >Xem chi tiết</a
+        >
       </button>
     </div>
 
@@ -84,8 +83,10 @@
       <Button class="rounded-lg px-4 py-2 text-white" @click="confirmDelete">
         Xóa
       </Button>
-      <Button class="rounded-lg px-4 py-2 text-white" @click="toggleEditForm">
-        Sửa
+      <Button class="rounded-lg px-4 py-2 text-white">
+        <a href="/admin/bookings/edit-bookings/{{bookings.id}}" class="w-full"
+          >Sửa</a
+        >
       </Button>
     </div>
 
