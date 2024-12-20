@@ -48,7 +48,7 @@ const deleteAirport_ = async (id: any) => {
           <TableHead>Quốc gia</TableHead>
           <TableHead>Mã IATA</TableHead>
           <TableHead>
-            <span class="sr-only">Actions</span>
+            <span class="sr-only">Hành động</span>
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -73,7 +73,7 @@ const deleteAirport_ = async (id: any) => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuLabel>Hành động</DropdownMenuLabel>
                 <DropdownMenuItem
                   ><a
                     :href="`/admin/airport/edit-airport/${airport.id}`"

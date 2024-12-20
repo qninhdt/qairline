@@ -1,20 +1,4 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from '@/components/ui/table'
 import { deletePlane, getPlanes } from '../../../core/firebase'
 import { MoreHorizontal } from 'lucide-vue-next'
 import { useToast } from '../../../components/ui/toast'

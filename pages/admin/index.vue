@@ -5,7 +5,7 @@ import AnimatedIcon from '../components/animated-icon.vue'
 <template>
   <div>
     <div class="grid gap-4 p-6 md:grid-cols-2 lg:grid-cols-4">
-      <Card>
+      <Card class="pb-4 pl-4">
         <CardHeader
           class="flex flex-row items-center justify-between space-y-0 pb-2"
         >
@@ -22,7 +22,7 @@ import AnimatedIcon from '../components/animated-icon.vue'
           <p class="text-xs text-muted-foreground">+20.1%</p>
         </CardContent>
       </Card>
-      <Card>
+      <Card class="pb-4 pl-4">
         <CardHeader
           class="flex flex-row items-center justify-between space-y-0 pb-2"
         >
@@ -41,7 +41,7 @@ import AnimatedIcon from '../components/animated-icon.vue'
           <p class="text-xs text-muted-foreground">+180.1%</p>
         </CardContent>
       </Card>
-      <Card>
+      <Card class="pb-4 pl-4">
         <CardHeader
           class="flex flex-row items-center justify-between space-y-0 pb-2"
         >
@@ -58,7 +58,7 @@ import AnimatedIcon from '../components/animated-icon.vue'
           <p class="text-xs text-muted-foreground">-19%</p>
         </CardContent>
       </Card>
-      <Card>
+      <Card class="pb-4 pl-4">
         <CardHeader
           class="flex flex-row items-center justify-between space-y-0 pb-2"
         >
@@ -79,7 +79,7 @@ import AnimatedIcon from '../components/animated-icon.vue'
       </Card>
     </div>
     <div class="grid gap-4 bg-gray-100 p-6 md:grid-cols-2 lg:grid-cols-7">
-      <Card class="col-span-4">
+      <Card class="col-span-4 pr-6">
         <CardHeader>
           <CardTitle>Tổng quan</CardTitle>
         </CardHeader>
@@ -87,7 +87,7 @@ import AnimatedIcon from '../components/animated-icon.vue'
           <SimpleChartBar />
         </CardContent>
       </Card>
-      <Card class="col-span-3">
+      <Card class="col-span-3 pl-6 pr-6">
         <CardHeader>
           <CardTitle>Gần đây</CardTitle>
           <CardDescription> Bạn có thêm 25 khách hàng mới.</CardDescription>
