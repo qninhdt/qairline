@@ -299,3 +299,19 @@ export async function updateFlight(id: string, flight: any) {
     throw error
   }
 }
+export async function updateBooking(id: string, booking: any) {
+  try {
+    const q = doc(db, 'bookings', id)
+    const querySnapshot = await getDoc(q)
+
+    if (!querySnapshot.exists()) {
+      throw new Error(`No booking found with id: ${id}`)
+    }
+
+    await updateDoc(q, booking)
+    console.log(`Booking with id: ${id} has been updated.`)
+  } catch (error) {
+    console.error('Error updating booking:', error)
+    throw error
+  }
+}

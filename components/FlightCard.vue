@@ -72,7 +72,7 @@
         Hành khách: {{ flight.passengers.length }}
       </div>
       <button class="text-blue-500 underline hover:text-blue-700">
-        <a href="/admin/bookings/customers/{{flight.id}}" class="w-full"
+        <a href="/admin/bookings/customers/{{bookings.id}}" class="w-full"
           >Xem chi tiết</a
         >
       </button>
@@ -80,206 +80,37 @@
 
     <!-- Buttons: Xóa và Sửa -->
     <div v-if="!showEditForm" class="flex justify-end space-x-4">
-      <Button class="rounded-lg px-4 py-2 text-white" @click="deleteFlight">
+      <Button class="rounded-lg px-4 py-2 text-white" @click="deleteFlight_()">
         Xóa
       </Button>
       <Button class="rounded-lg px-4 py-2 text-white">
-        <a href="/admin/bookings/edit-bookings/{{bookings.id}}" class="w-full"
+        <a :href="`/admin/bookings/edit-flight/${flight.id}`" class="w-full"
           >Sửa</a
         >
       </Button>
-    </div>
-
-    <!-- Danh sách hành khách -->
-    <div
-      v-if="showPassengers"
-      class="absolute z-10 w-full rounded-md border bg-white p-4 shadow-lg"
-    >
-      <h3 class="mb-4 text-lg font-bold text-gray-700">Danh sách khách hàng</h3>
-      <table class="w-full table-auto rounded-lg bg-white shadow-md">
-        <thead>
-          <tr class="bg-gray-100">
-            <th
-              class="border border-gray-300 px-2 py-1 text-left text-sm font-semibold text-gray-700"
-            >
-              Họ
-            </th>
-            <th
-              class="border border-gray-300 px-2 py-1 text-left text-sm font-semibold text-gray-700"
-            >
-              Tên
-            </th>
-            <th
-              class="border border-gray-300 px-2 py-1 text-left text-sm font-semibold text-gray-700"
-            >
-              Email
-            </th>
-            <th
-              class="border border-gray-300 px-2 py-1 text-left text-sm font-semibold text-gray-700"
-            >
-              Thời gian đặt vé
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(passenger, index) in flight.passengers"
-            :key="index"
-            class="hover:bg-gray-50"
-          >
-            <td class="border border-gray-300 px-2 py-1 text-sm text-gray-600">
-              {{ passenger.firstName }}
-            </td>
-            <td class="border border-gray-300 px-2 py-1 text-sm text-gray-600">
-              {{ passenger.secondName }}
-            </td>
-            <td class="border border-gray-300 px-2 py-1 text-sm text-gray-600">
-              {{ passenger.email }}
-            </td>
-            <td class="border border-gray-300 px-2 py-1 text-sm text-gray-600">
-              {{ passenger.bookingTime }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <Button
-        class="mt-4 rounded-lg px-4 py-2 text-sm text-white"
-        @click="togglePassengerList"
-      >
-        Đóng
-      </Button>
-    </div>
-
-    <!-- Form chỉnh sửa -->
-    <div
-      v-if="showEditForm"
-      class="absolute z-10 mt-2 w-full rounded-md border bg-white p-4 shadow-lg"
-    >
-      <h3 class="mb-4 text-lg font-bold text-gray-700">
-        Chỉnh sửa thông tin chuyến bay
-      </h3>
-      <form @submit.prevent="saveEdit">
-        <div class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700"
-              >Airline</label
-            >
-            <input
-              v-model="editData.airline"
-              type="text"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700"
-              >Flight Code</label
-            >
-            <input
-              v-model="editData.flightCode"
-              type="text"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700"
-              >Thời gian xuất phát</label
-            >
-            <input
-              v-model="editData.departureTime"
-              type="text"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700"
-              >Thời gian đến</label
-            >
-            <input
-              v-model="editData.arrivalTime"
-              type="text"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700"
-              >Hành lý</label
-            >
-            <input
-              v-model="editData.facilities"
-              type="text"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700"
-              >Trạng thái</label
-            >
-            <select
-              v-model="editData.status"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            >
-              <option value="Đang chờ">Đang chờ</option>
-              <option value="Xác nhận">Xác nhận</option>
-              <option value="Đã hủy">Đã hủy</option>
-            </select>
-          </div>
-        </div>
-        <div class="mt-4 flex justify-end space-x-4">
-          <Button
-            class="rounded-lg bg-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-400"
-            @click="toggleEditForm"
-          >
-            Hủy
-          </Button>
-          <Button
-            type="submit"
-            class="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-          >
-            Lưu
-          </Button>
-        </div>
-      </form>
     </div>
   </div>
 </template>
 
 <script>
+import { deleteFlight, flightsRef, getFlights } from '../core/firebase'
+import { useToast } from '../components/ui/toast'
+import { set } from 'vue-demi'
+const { toast } = useToast()
 export default {
   props: {
     flight: {
       type: Object,
       required: true
-    }
-  },
-  data() {
-    return {
-      showPassengers: false,
-      showEditForm: false,
-      showDeleteConfirm: false,
-      editData: { ...this.flight }
+    },
+    deleteFlight_: {
+      type: Function,
+      required: true
     }
   },
   methods: {
-    togglePassengerList() {
-      this.showPassengers = !this.showPassengers
-    },
-    toggleEditForm() {
-      this.showEditForm = !this.showEditForm
-    },
-    saveEdit() {
-      this.editData.updatedAt = new Date().toISOString().split('T')[0] // Cập nhật ngày
-      this.$emit('update-flight', this.editData)
-      this.toggleEditForm()
-    },
-    confirmDelete() {
-      this.showDeleteConfirm = true
-    },
-    cancelDelete() {
-      this.showDeleteConfirm = false
-    },
-    deleteFlight() {
-      this.$emit('delete-flight', this.flight.id)
-      this.showDeleteConfirm = false
+    deleteFlight_() {
+      this.deleteFlight_(this.flight.id)
     }
   }
 }
