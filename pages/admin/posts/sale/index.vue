@@ -15,8 +15,19 @@
               class="h-[180px] w-full rounded-t-lg object-cover"
             />
             <CardHeader class="p-3">
-              <CardTitle class="inline text-sm">{{ post.title }}</CardTitle>
-              <CardDescription> Ngày tạo bài viết </CardDescription>
+              <CardTitle class="inline text-sm">{{ post.title }} </CardTitle>
+              <CardDescription>
+                Ngày tạo bài viết
+                <div class="float-right">
+                  <AnimatedIcon
+                    :id="'coupon'"
+                    :size="25"
+                    class="pt-2 text-accent"
+                    target="a"
+                  />
+                  <span class="inline"> -50% </span>
+                </div>
+              </CardDescription>
               <Button
                 class="float-right px-4 py-2 text-white shadow"
                 @click="deletePost(post)"
