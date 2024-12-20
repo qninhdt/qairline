@@ -1,9 +1,12 @@
 <script setup lang="ts">
+// import { user } from './core/firebase'
+
 const NO_NAVBAR_PAGES = ['auth', 'admin']
 
 const NAVBAR_ADMIN_PAGES = ['admin']
 
 const route = useRoute()
+// const router = useRouter()
 
 const showNavBar = computed(() => {
   for (const page of NO_NAVBAR_PAGES) {
