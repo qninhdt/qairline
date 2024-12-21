@@ -1,5 +1,5 @@
 <template>
-  <div class="relative mb-4 rounded-lg border bg-white p-4 shadow-md">
+  <div class="relative mb-4 rounded-lg border bg-background p-4 shadow-md">
     <div class="flex items-center justify-between">
       <!-- Logo và tên hãng bay -->
       <div class="flex items-center space-x-3">
@@ -75,11 +75,9 @@
 
     <!-- Passengers -->
     <div class="flex items-center space-x-2">
-      <div class="text-sm text-gray-600">
-        Hành khách: {{ flight.passengers.length }}
-      </div>
+      <div class="text-sm text-gray-600"></div>
       <button class="text-blue-500 underline hover:text-blue-700">
-        <a href="/admin/flight/customers/{{flight.id}}" class="w-full"
+        <a :href="`/admin/flight/customers/${flight.id}`" class="w-full"
           >Xem chi tiết</a
         >
       </button>

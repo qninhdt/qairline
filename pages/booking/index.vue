@@ -7,15 +7,21 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { Check, Circle, Dot } from 'lucide-vue-next'
 import { h, ref } from 'vue'
 import * as z from 'zod'
-import { getFlights } from '../core/firebase'
+import { getFlights, addBooking, user } from '../../core/firebase'
 
 const route = useRoute()
 const from = ref()
 const to = ref()
 const date = ref()
 const classType = ref('economy')
-
-const activeIndex = ref(0)
+const sortType = ref('default')
+const activeIndex = computed(() => {
+  if (!days.value) return -1
+  if (!date.value) return -1
+  return days.value.findIndex(
+    (day) => day.date.getTime() === date.value.getTime()
+  )
+})
 const flights = ref([])
 
 const strPrice = (price: number) => {
@@ -69,14 +75,13 @@ const steps = [
   }
 ]
 
-function onSubmit(values: any) {
+async function onSubmit(values: any) {
+  await addBooking({
+    user: user.email,
+    flight: currentFlight.value.flightCode
+  })
   toast({
-    title: 'You submitted the following values:',
-    description: h(
-      'pre',
-      { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' },
-      h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))
-    )
+    title: 'Thanh toán thành công'
   })
 }
 
@@ -88,7 +93,111 @@ onMounted(async () => {
   classType.value = route.query.classType as string
 
   flights.value = await getFlights()
-  console.log(flights.value)
+  // convert arrivalTime and departureTime to Date object
+  flights.value.forEach((flight) => {
+    flight.arrivalTime = new Date(flight.arrivalTime)
+    flight.departureTime = new Date(flight.departureTime)
+    flight.capacity = Math.floor(Math.random() * 10) + 1
+  })
+
+  maxPrice.value = [Math.max(...flights.value.map((flight) => flight.price))]
+})
+
+// show flights with same day as selected date
+const showFlights = computed(() => {
+  return flights.value.filter((flight) => {
+    return (
+      flight.from === from.value &&
+      flight.to === to.value &&
+      flight.departureTime.getDate() === date.value.getDate() &&
+      flight.departureTime.getMonth() === date.value.getMonth() &&
+      flight.departureTime.getFullYear() === date.value.getFullYear()
+    )
+  })
+})
+
+const realShowFlights = computed(() => {
+  const result = showFlights.value.filter((flight) => {
+    return flight.price <= maxPrice.value[0]
+  })
+
+  if (sortType.value === 'default') {
+    return result
+  } else if (sortType.value === 'cheap') {
+    return result.sort((a, b) => a.price - b.price)
+  } else if (sortType.value === 'early') {
+    return result.sort(
+      (a, b) => a.departureTime.getTime() - b.departureTime.getTime()
+    )
+  } else if (sortType.value === 'late') {
+    return result.sort(
+      (a, b) => b.departureTime.getTime() - a.departureTime.getTime()
+    )
+  }
+
+  return result
+})
+
+const currentFlight = ref()
+
+const maxPrice = ref([1000000])
+const realMaxPrice = computed(() => {
+  return Math.max(...showFlights.value.map((flight) => flight.price))
+})
+
+const getDuration = (departureTime: any, arrivalTime: any) => {
+  const delta = arrivalTime - departureTime
+  // convert to hours and minutes
+  const hours = Math.floor(delta / 1000 / 60 / 60)
+  const minutes = Math.floor((delta / 1000 / 60) % 60)
+  return `${hours}h ${minutes}m`
+}
+
+const days = computed(() => {
+  const day2flights = flights.value.reduce(
+    (acc, flight) => {
+      // get day/month/year from const date withou time
+      const date =
+        flight.departureTime.getDate() +
+        '/' +
+        flight.departureTime.getMonth() +
+        '/' +
+        flight.departureTime.getFullYear()
+
+      if (acc[date]) {
+        acc[date] = flight.price < acc[date] ? flight.price : acc[date]
+      } else {
+        acc[date] = flight.price
+      }
+      return acc
+    },
+    {} as Record<number, number>
+  )
+
+  const maxPrice = Math.max(...Object.values(day2flights))
+
+  // a window of 13 day with selected date in the middle
+  const result = Array.from({ length: 13 }, (_, i) => {
+    // shift the current date
+    const currentDate = new Date(date.value)
+    currentDate.setDate(currentDate.getDate() - 6 + i)
+
+    // get day/month/year from const date withou time
+    const dateStr =
+      currentDate.getDate() +
+      '/' +
+      currentDate.getMonth() +
+      '/' +
+      currentDate.getFullYear()
+
+    return {
+      price: day2flights[dateStr],
+      date: currentDate,
+      normalizedPrice: day2flights[dateStr] / maxPrice
+    }
+  })
+
+  return result
 })
 </script>
 
@@ -110,14 +219,22 @@ onMounted(async () => {
           </DrawerHeader>
         </div>
         <div class="py-2">
-          <FlightFilter />
+          <FlightFilter
+            v-model:max-price="maxPrice"
+            v-model:sort-type="sortType"
+            :real-max-price="realMaxPrice"
+          />
         </div>
       </DrawerContent>
     </Drawer>
     <div class="w-full lg:flex lg:space-x-8 lg:px-64">
       <div class="hidden h-full w-[500px] lg:block">
         <div class="mt-32 rounded-sm border-2 border-primary p-4">
-          <FlightFilter />
+          <FlightFilter
+            v-model:max-price="maxPrice"
+            v-model:sort-type="sortType"
+            :real-max-price="realMaxPrice"
+          />
         </div>
       </div>
       <div class="w-full px-6">
@@ -127,7 +244,6 @@ onMounted(async () => {
             v-model:to="route.query.to"
           />
         </div>
-
         <!-- image -->
         <div
           class="relative overflow-hidden rounded-sm border-2 border-solid border-primary"
@@ -151,29 +267,41 @@ onMounted(async () => {
               class="space-x-2 overflow-y-auto"
             >
               <swiper-slide
-                v-for="(x, i) in days"
+                v-for="(day, i) in days"
                 :key="i"
                 class="h-full !w-[150px]"
+                @click="() => (date = day.date)"
               >
                 <div class="flex h-full flex-col">
                   <div class="flex grow flex-col justify-end">
                     <div
                       v-if="i === activeIndex"
                       class="h-full rounded-sm border-2 border-primary bg-[--primary-50]"
-                      :style="{ height: `${x * 100}%` }"
-                    ></div>
+                      :style="{ height: `${day.normalizedPrice * 100}%` }"
+                    >
+                      <span class="block text-center">{{
+                        day.price ? strPrice(day.price) + 'đ' : 'Không có'
+                      }}</span>
+                    </div>
                     <div
-                      v-else-if="x != null"
+                      v-else-if="day.price"
                       class="rounded-sm border-2 border-solid border-muted-foreground bg-[--foreground-50]"
-                      :style="{ height: `${x * 100}%` }"
-                    ></div>
+                      :style="{ height: `${day.normalizedPrice * 100}%` }"
+                    >
+                      <span class="block text-center">{{
+                        strPrice(day.price) + 'đ'
+                      }}</span>
+                    </div>
                     <div
                       v-else
                       class="h-full rounded-sm border-2 border-dotted border-background bg-[--background-50]"
-                    ></div>
+                    >
+                      <span class="block text-center"> Không có </span>
+                    </div>
                   </div>
                   <div class="gow-0 text-center">
-                    {{ x ? x : 'Không có' }}
+                    <!-- day/month/year -->
+                    <span>{{ day.date.toLocaleDateString() }}</span>
                   </div>
                 </div>
               </swiper-slide>
@@ -198,7 +326,7 @@ onMounted(async () => {
         <div class="flex flex-col">
           <div class="flex flex-col space-y-4">
             <div
-              v-for="(flight, index) in flights"
+              v-for="(flight, index) in realShowFlights"
               :key="index"
               class="flex items-center overflow-hidden rounded-sm border-2 border-solid border-primary"
             >
@@ -217,8 +345,13 @@ onMounted(async () => {
                 <div class="p-4">
                   <div class="flex">
                     <div class="text-center">
-                      <div>06:30</div>
-                      <div class="text-muted-foreground">HAN</div>
+                      <!-- get time from date hour/min -->
+                      <div>
+                        {{ flight.departureTime.getHours() }}:{{
+                          flight.departureTime.getMinutes()
+                        }}
+                      </div>
+                      <div class="text-muted-foreground">{{ flight.from }}</div>
                     </div>
                     <div class="flex-grow">
                       <div
@@ -230,21 +363,27 @@ onMounted(async () => {
                       </div>
                     </div>
                     <div class="text-center">
-                      <div>11:30</div>
-                      <div class="text-muted-foreground">SGN</div>
+                      <div>
+                        {{ flight.arrivalTime.getHours() }}:{{
+                          flight.arrivalTime.getMinutes()
+                        }}
+                      </div>
+                      <div class="text-muted-foreground">{{ flight.to }}</div>
                     </div>
                   </div>
                   <div class="mt-4">
                     <span class="mr-1 text-muted-foreground"
                       >Thời gian bay:</span
                     >
-                    <span>{{ flight.duration }}</span>
+                    <span>{{
+                      getDuration(flight.departureTime, flight.arrivalTime)
+                    }}</span>
                   </div>
                   <div class="mt-2">
                     <span class="mr-1 text-muted-foreground"
                       >Số chỗ trống:</span
                     >
-                    <span>{{ flight.available }}</span>
+                    <span>{{ flight.capacity }} </span>
                   </div>
                   <div>
                     <Dialog>
@@ -252,6 +391,7 @@ onMounted(async () => {
                         <Button
                           class="float-right rounded-sm"
                           variant="secondary"
+                          @click="() => (currentFlight = flight)"
                         >
                           Đặt vé
                         </Button>
@@ -520,7 +660,7 @@ onMounted(async () => {
                                 </Button>
                                 <div class="flex items-center gap-3">
                                   <Button
-                                    v-if="stepIndex !== 3"
+                                    v-if="stepIndex !== 2"
                                     :type="meta.valid ? 'button' : 'submit'"
                                     :disabled="isNextDisabled"
                                     size="sm"
@@ -529,7 +669,7 @@ onMounted(async () => {
                                     Next
                                   </Button>
                                   <Button
-                                    v-if="stepIndex === 3"
+                                    v-if="stepIndex === 2"
                                     size="sm"
                                     type="submit"
                                   >

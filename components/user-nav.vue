@@ -21,7 +21,7 @@ import { logout, user } from '../core/firebase'
 
 const LINKS = [
   { name: 'Thông tin cá nhân', url: '/profile', icon: 'circle_avatar' },
-  { name: 'Vé đã đặt', url: '/billing', icon: 'receipt_dollar' },
+  { name: 'Vé đã đặt', url: '/my-ticket', icon: 'receipt_dollar' },
   { name: 'Cài đặt', url: '/settings', icon: 'cog' }
 ]
 </script>
@@ -62,6 +62,7 @@ const LINKS = [
               v-for="link in LINKS"
               :key="link.url"
               class="user-menu-item p-1 px-4"
+              @click="() => $router.push(link.url)"
             >
               <div class="flex items-center space-x-2">
                 <AnimatedIcon
@@ -119,6 +120,7 @@ const LINKS = [
             v-for="link in LINKS"
             :key="link.url"
             class="user-menu-item"
+            @click="() => $router.push(link.url)"
           >
             <AnimatedIcon :id="link.icon" :size="16" target=".user-menu-item" />
             {{ link.name }}
