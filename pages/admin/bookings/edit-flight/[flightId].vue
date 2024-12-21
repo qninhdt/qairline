@@ -11,8 +11,6 @@ const to = ref('')
 const price = ref('')
 const status = ref('')
 const passengers = ref('')
-const createdAt = ref('')
-const updatedAt = ref('')
 
 const { toast } = useToast()
 const route = useRoute()
@@ -29,23 +27,28 @@ onMounted(async () => {
   price.value = flight.price
   status.value = flight.status
   passengers.value = flight.passengers
-  createdAt.value = flight.createdAt
-  updatedAt.value = flight.updatedAt
 })
 const submit = async () => {
+  const formatDate = (date) => {
+    const d = new Date(date)
+    const day = String(d.getDate()).padStart(2, '0')
+    const month = String(d.getMonth() + 1).padStart(2, '0')
+    const year = d.getFullYear()
+    return `${day}/${month}/${year}`
+  }
   await updateFlight(route.params.flightId, {
     airline: airline.value,
     flightCode: flightCode.value,
     arrivalTime: arrivalTime.value,
     departureTime: departureTime.value,
-    flightDate: flightDate.value,
+    flightDate: formatDate(flightDate.value),
     from: from.value,
     to: to.value,
     price: price.value,
     status: status.value,
     passengers: passengers.value,
-    createdAt: createdAt.value,
-    updatedAt: updatedAt.value
+    createdAt: formatDate(new Date()),
+    updatedAt: formatDate(new Date())
   })
 
   toast({
@@ -103,10 +106,6 @@ const submit = async () => {
       </Select>
       <Label class="block">Số hành khách</Label>
       <Input v-model="passengers" type="text" />
-      <Label class="block">Ngày tạo</Label>
-      <Input v-model="createdAt" type="text" />
-      <Label class="block">Ngày cập nhật</Label>
-      <Input v-model="updatedAt" type="text" />
       <Button class="mr-4 mt-4" @click="submit">Lưu</Button>
       <a href="/admin/bookings"
         ><Button class="mt-4" variant="secondary">Hủy</Button></a
