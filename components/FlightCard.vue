@@ -84,7 +84,7 @@
         Xóa
       </Button>
       <Button class="rounded-lg px-4 py-2 text-white">
-        <a href="/admin/bookings/edit-flight/${flight.id}" class="w-full"
+        <a :href="`/admin/bookings/edit-flight/${flight.id}`" class="w-full"
           >Sửa</a
         >
       </Button>
