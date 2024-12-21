@@ -82,14 +82,14 @@ const submit = async () => {
         /> </Button
     ></a>
     <div class="m-auto w-9/12 space-y-4">
-      <Label class="block">Airline</Label>
+      <Label class="block">Tàu bay</Label>
       <Select v-model="airline">
         <SelectTrigger>
-          <SelectValue placeholder="Chọn hãng bay" />
+          <SelectValue placeholder="Chọn tàu bay" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Hãng bay</SelectLabel>
+            <SelectLabel>Tàu bay</SelectLabel>
             <SelectItem
               v-for="plane in planes"
               :key="plane.id"
@@ -100,12 +100,12 @@ const submit = async () => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Label class="block">Flight Code</Label>
+      <Label class="block">Mã chuyến bay</Label>
       <Input v-model="flightCode" type="text" />
       <Label class="block">Thời gian xuất phát</Label>
-      <Input v-model="arrivalTime" type="text" />
-      <Label class="block">Thời gian đến</Label>
       <Input v-model="departureTime" type="text" />
+      <Label class="block">Thời gian đến</Label>
+      <Input v-model="arrivalTime" type="text" />
       <Label class="block">Ngày bay</Label>
       <Input v-model="flightDate" type="text" />
       <Label class="block">Từ</Label>

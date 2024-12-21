@@ -44,9 +44,9 @@ import {
           <TableCell> 19/12/2024 </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell class="font-medium"> XYZ </TableCell>
-          <TableCell class="font-medium"> ABC </TableCell>
-          <TableCell> xyz@gmail.com </TableCell>
+          <TableCell class="font-medium"> Nguyễn Quang </TableCell>
+          <TableCell class="font-medium"> Ninh </TableCell>
+          <TableCell> qndt123@gmail.com </TableCell>
           <TableCell> 21/12/2024 </TableCell>
         </TableRow>
       </TableBody>

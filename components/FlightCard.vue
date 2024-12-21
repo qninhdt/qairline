@@ -3,12 +3,7 @@
     <div class="flex items-center justify-between">
       <!-- Logo và tên hãng bay -->
       <div class="flex items-center space-x-3">
-        <AnimatedIcon
-                    :id="'plane'"
-                    :size="24"
-                    class="text-accent"
-                    target="a"
-                  />
+        <AnimatedIcon :id="'plane'" :size="24" class="text-accent" target="a" />
         <div>
           <div class="font-bold text-gray-700">{{ flight.airline }}</div>
           <div class="text-sm text-gray-500">{{ flight.flightCode }}</div>
