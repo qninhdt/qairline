@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { useToast } from '../../../../components/ui/toast'
-import { getFlightById, updateFlight } from '../../../../core/firebase'
+import {
+  getAirports,
+  getPlanes,
+  getFlightById,
+  updateFlight
+} from '../../../../core/firebase'
 const airline = ref('')
 const flightCode = ref('')
 const departureTime = ref('')
@@ -15,6 +20,12 @@ const passengers = ref('')
 const { toast } = useToast()
 const route = useRoute()
 const router = useRouter()
+const airports = ref([])
+const planes = ref([])
+onMounted(async () => {
+  airports.value = await getAirports()
+  planes.value = await getPlanes()
+})
 onMounted(async () => {
   const flight: any = await getFlightById(route.params.flightId)
   airline.value = flight.airline
@@ -72,9 +83,41 @@ const submit = async () => {
     ></a>
     <div class="m-auto w-9/12 space-y-4">
       <Label class="block">Airline</Label>
-      <Input v-model="airline" type="text" />
-      <Label class="block">Flight Code</Label>
-      <Input v-model="flightCode" type="text" />
+      <Select v-model="airline">
+        <SelectTrigger>
+          <SelectValue placeholder="Chọn hãng bay" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Hãng bay</SelectLabel>
+            <SelectItem
+              v-for="plane in planes"
+              :key="plane.id"
+              :value="plane.name"
+            >
+              {{ plane.name }}
+            </SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <Label class="block">Sân bay</Label>
+      <Select v-model="flightCode">
+        <SelectTrigger>
+          <SelectValue placeholder="Chọn sân bay" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Sân bay</SelectLabel>
+            <SelectItem
+              v-for="airport in airports"
+              :key="airport.id"
+              :value="airport.name"
+            >
+              {{ airport.name }}
+            </SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
       <Label class="block">Thời gian xuất phát</Label>
       <Input v-model="arrivalTime" type="text" />
       <Label class="block">Thời gian đến</Label>
