@@ -28,7 +28,7 @@ onMounted(async () => {
               :key="city.code"
               :value="city.code"
             >
-              <a>{{ city.name }}</a>
+              <b>{{ city.name }}</b>
             </SelectItem>
           </SelectGroup>
         </SelectContent>
