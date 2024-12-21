@@ -85,11 +85,11 @@ const submit = async () => {
       <Label class="block">Tàu bay</Label>
       <Select v-model="airline">
         <SelectTrigger>
-          <SelectValue placeholder="Chọn hãng bay" />
+          <SelectValue placeholder="Chọn tàu bay" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Hãng bay</SelectLabel>
+            <SelectLabel>Tàu bay</SelectLabel>
             <SelectItem
               v-for="plane in planes"
               :key="plane.id"
