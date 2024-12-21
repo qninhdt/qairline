@@ -45,7 +45,7 @@ const priceToStr = (price: number) => {
     <div class="mb-8">
       <Separator label="Sắp xếp theo" class="mb-4" />
       <div class="px-8">
-        <RadioGroup default-value="comfortable" v-model="sortType">
+        <RadioGroup v-model="sortType" default-value="comfortable">
           <div class="flex items-center space-x-2">
             <RadioGroupItem id="r1" value="default" />
             <Label for="r1">Mặc định</Label>

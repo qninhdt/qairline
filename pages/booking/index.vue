@@ -5,7 +5,7 @@ import { Mousewheel } from 'swiper/modules'
 import { toast } from '../components/ui/toast'
 import { toTypedSchema } from '@vee-validate/zod'
 import { Check, Circle, Dot } from 'lucide-vue-next'
-import { h, ref } from 'vue'
+import { ref } from 'vue'
 import * as z from 'zod'
 import { getFlights, addBooking, user } from '../../core/firebase'
 
@@ -75,7 +75,7 @@ const steps = [
   }
 ]
 
-async function onSubmit(values: any) {
+async function onSubmit(_: any) {
   await addBooking({
     user: user.email,
     flight: currentFlight.value.flightCode
