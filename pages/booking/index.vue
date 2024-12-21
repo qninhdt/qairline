@@ -7,6 +7,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { Check, Circle, Dot } from 'lucide-vue-next'
 import { h, ref } from 'vue'
 import * as z from 'zod'
+import { getFlights } from '../core/firebase'
 
 const route = useRoute()
 const from = ref()
@@ -14,85 +15,13 @@ const to = ref()
 const date = ref()
 const classType = ref('economy')
 
-const days = [
-  null,
-  null,
-  0.5,
-  1.0,
-  0.75,
-  0.5,
-  1.0,
-  0.75,
-  1.0,
-  0.5,
-  1.0,
-  0.75,
-  0.5,
-  1.0,
-  0.75,
-  1.0,
-  null,
-  null
-]
+const activeIndex = ref(0)
+const flights = ref([])
 
-const flights = [
-  {
-    price: '1.000.000',
-    time: '12:00 - 18:00',
-    duration: '12h',
-    available: 10
-  },
-  {
-    price: '2.000.000',
-    time: '06:00 - 12:00',
-    duration: '12h',
-    available: 5
-  },
-  {
-    price: '3.000.000',
-    time: '12:00 - 18:00',
-    duration: '12h',
-    available: 3
-  },
-  {
-    price: '4.000.000',
-    time: '06:00 - 12:00',
-    duration: '12h',
-    available: 2
-  },
-  {
-    price: '5.000.000',
-    time: '12:00 - 18:00',
-    duration: '12h',
-    available: 1
-  },
-  {
-    price: '6.000.000',
-    time: '06:00 - 12:00',
-    duration: '12h',
-    available: 0
-  },
-  {
-    price: '7.000.000',
-    time: '12:00 - 18:00',
-    duration: '12h',
-    available: 0
-  },
-  {
-    price: '8.000.000',
-    time: '06:00 - 12:00',
-    duration: '12h',
-    available: 0
-  },
-  {
-    price: '9.000.000',
-    time: '12:00 - 18:00',
-    duration: '12h',
-    available: 0
-  }
-]
-
-const activeIndex = ref(6)
+const strPrice = (price: number) => {
+  // separate thousands
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
 
 const formSchema = [
   z.object({
@@ -157,6 +86,9 @@ onMounted(async () => {
   from.value = route.query.from as string
   to.value = route.query.to as string
   classType.value = route.query.classType as string
+
+  flights.value = await getFlights()
+  console.log(flights.value)
 })
 </script>
 
@@ -275,7 +207,9 @@ onMounted(async () => {
               >
                 <div class="text-center text-white">
                   <div class="text-md">từ</div>
-                  <div class="text-xl font-bold">{{ flight.price }}</div>
+                  <div class="text-xl font-bold">
+                    {{ strPrice(flight.price) }}
+                  </div>
                   <div class="text-md">VND</div>
                 </div>
               </div>
