@@ -100,8 +100,16 @@ const submit = async () => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Label class="block">Sân bay</Label>
-      <Select v-model="flightCode">
+      <Label class="block">Flight Code</Label>
+      <Input v-model="flightCode" type="text" />
+      <Label class="block">Thời gian xuất phát</Label>
+      <Input v-model="arrivalTime" type="text" />
+      <Label class="block">Thời gian đến</Label>
+      <Input v-model="departureTime" type="text" />
+      <Label class="block">Ngày bay</Label>
+      <Input v-model="flightDate" type="text" />
+      <Label class="block">Từ</Label>
+      <Select v-model="from">
         <SelectTrigger>
           <SelectValue placeholder="Chọn sân bay" />
         </SelectTrigger>
@@ -118,17 +126,25 @@ const submit = async () => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Label class="block">Thời gian xuất phát</Label>
-      <Input v-model="arrivalTime" type="text" />
-      <Label class="block">Thời gian đến</Label>
-      <Input v-model="departureTime" type="text" />
-      <Label class="block">Ngày bay</Label>
-      <Input v-model="flightDate" type="text" />
-      <Label class="block">Từ</Label>
-      <Input v-model="from" type="text" />
 
       <Label class="block">Đến</Label>
-      <Input v-model="to" type="text" />
+      <Select v-model="to">
+        <SelectTrigger>
+          <SelectValue placeholder="Chọn sân bay" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Sân bay</SelectLabel>
+            <SelectItem
+              v-for="airport in airports"
+              :key="airport.id"
+              :value="airport.name"
+            >
+              {{ airport.name }}
+            </SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
 
       <Label class="block">Giá</Label>
       <Input v-model="price" type="text" />
