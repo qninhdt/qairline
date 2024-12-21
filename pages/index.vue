@@ -128,42 +128,22 @@ const onChange = (swiper: any) => {
             :key="info.title"
             class="cursor-pointer md:basis-1/2 lg:basis-1/3"
           >
-            <Dialog>
-              <DialogTrigger as-child>
-                <div class="rounded-lg bg-gray-100 p-4">
-                  <img
-                    :src="info.img"
-                    alt=""
-                    class="h-[200px] w-full rounded-lg object-cover"
-                  />
-                  <h3 class="text-[20px] font-semibold text-black">
-                    {{ info.title }}
-                  </h3>
-                  <p class="text-black">
-                    {{ info.date }}
-                  </p>
-                </div>
-              </DialogTrigger>
-              <DialogContent class="sm:max-w-md">
-                <ScrollArea class="max-h-[500px] p-3">
-                  <DialogHeader>
-                    <DialogTitle>{{ info.title }}</DialogTitle>
-                    <DialogDescription> {{ info.date }} </DialogDescription>
-                  </DialogHeader>
-                  <img
-                    :src="info.img"
-                    alt=""
-                    class="h-[200px] w-full rounded-lg object-cover"
-                  />
-                  <p>{{ info.content }}</p>
-                  <DialogFooter class="sm:justify-start">
-                    <DialogClose as-child>
-                      <Button type="button" variant="secondary"> Đóng </Button>
-                    </DialogClose>
-                  </DialogFooter>
-                </ScrollArea>
-              </DialogContent>
-            </Dialog>
+            <div
+              class="rounded-lg border-[1px] border-primary p-4"
+              @click="() => $router.push(`/post/${info.id}`)"
+            >
+              <img
+                :src="info.img"
+                alt=""
+                class="h-[200px] w-full rounded-lg object-cover"
+              />
+              <h3 class="text-[20px] font-semibold text-primary">
+                {{ info.title }}
+              </h3>
+              <p class="text-muted-foreground">
+                {{ info.date }}
+              </p>
+            </div>
           </CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
@@ -186,16 +166,16 @@ const onChange = (swiper: any) => {
           >
             <Dialog>
               <DialogTrigger as-child>
-                <div class="rounded-lg bg-gray-100 p-4">
+                <div class="rounded-lg border-[1px] border-primary p-4">
                   <img
                     :src="sale.img"
                     alt=""
                     class="h-[200px] w-full rounded-lg object-cover"
                   />
-                  <h3 class="text-[20px] font-semibold text-black">
+                  <h3 class="text-[20px] font-semibold text-primary">
                     {{ sale.title }}
                   </h3>
-                  <p class="text-black">
+                  <p class="text-muted-foreground">
                     {{ sale.date.start }} - {{ sale.date.end }}
                   </p>
                 </div>

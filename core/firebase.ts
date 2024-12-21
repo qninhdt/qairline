@@ -166,6 +166,11 @@ export async function getSales() {
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
 }
 
+export async function getUsers() {
+  const querySnapshot = await getDocs(usersRef)
+  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+}
+
 // Fetch an airport by ID and include its ID
 export async function getAirportById(id: string) {
   const q = doc(db, 'airports', id)
@@ -381,4 +386,15 @@ export async function getAllCites() {
       code: d.code
     }
   })
+}
+
+export async function removeBooking(userEmail: any, flightCode: any) {
+  const q = query(bookingsRef, where('user', '==', userEmail))
+  const querySnapshot = await getDocs(q)
+  const booking = querySnapshot.docs.find(
+    (doc) => doc.data().flight === flightCode
+  )
+  if (booking) {
+    await deleteDoc(doc(bookingsRef, booking.id))
+  }
 }

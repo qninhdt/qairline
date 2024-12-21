@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { Slider } from '../components/ui/slider'
-// const classType = defineModel('classType', { default: 'economy' })
-const maxPrice = defineModel('maxPrice', { default: [3000000] })
+
+const sortType = defineModel('sortType', { default: 'default' })
+const maxPrice = defineModel('maxPrice')
+const { realMaxPrice } = defineProps(['realMaxPrice'])
 
 const priceToStr = (price: number) => {
   let priceStr = price.toString()
@@ -23,7 +25,7 @@ const priceToStr = (price: number) => {
       <div class="mx-auto flex w-[75%] flex-col space-y-2">
         <Slider
           v-model="maxPrice"
-          :max="5000000"
+          :max="realMaxPrice"
           :min="1000000"
           :step="1000000"
         />
@@ -43,7 +45,7 @@ const priceToStr = (price: number) => {
     <div class="mb-8">
       <Separator label="Sắp xếp theo" class="mb-4" />
       <div class="px-8">
-        <RadioGroup default-value="comfortable">
+        <RadioGroup v-model="sortType" default-value="comfortable">
           <div class="flex items-center space-x-2">
             <RadioGroupItem id="r1" value="default" />
             <Label for="r1">Mặc định</Label>
@@ -63,7 +65,7 @@ const priceToStr = (price: number) => {
         </RadioGroup>
       </div>
     </div>
-    <div class="mb-8">
+    <!-- <div class="mb-8">
       <Separator label="Khuyễn mãi" class="mb-4" />
       <div class="px-8">
         <div>
@@ -94,8 +96,8 @@ const priceToStr = (price: number) => {
               Suất ăn đặc biệt
             </label>
           </div>
-        </div>
-      </div>
-    </div>
+        </div> -->
+    <!-- </div>
+    </div> -->
   </div>
 </template>
