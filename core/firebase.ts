@@ -127,6 +127,10 @@ export async function addBooking(booking: any) {
 export async function addInfo(info: any) {
   await addDoc(infosRef, info)
 }
+
+export async function addSale(sale: any) {
+  await addDoc(salesRef, sale)
+}
 // Fetch all airports and include their IDs
 export async function getAirports() {
   const querySnapshot = await getDocs(airportsRef)

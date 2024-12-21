@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { useToast } from '../../../../components/ui/toast'
-import {
-  getFlightById,
-  updateFlight,
-  getBookingById,
-  updateBooking
-} from '../../../../core/firebase'
+import { getFlightById, updateFlight } from '../../../../core/firebase'
 const airline = ref('')
 const flightCode = ref('')
 const departureTime = ref('')
@@ -24,18 +19,18 @@ const route = useRoute()
 const router = useRouter()
 onMounted(async () => {
   const flight: any = await getFlightById(route.params.flightId)
-  ;(airline.value = flight.airline),
-    (flightCode.value = flight.flightCode),
-    (arrivalTime.value = flight.arrivalTime),
-    (departureTime.value = flight.departureTime),
-    (flightDate.value = flight.flightDate),
-    (from.value = flight.from),
-    (to.value = flight.to),
-    (price.value = flight.price),
-    (status.value = flight.status),
-    (passengers.value = flight.passengers),
-    (createdAt.value = flight.createdAt),
-    (updatedAt.value = flight.updatedAt)
+  airline.value = flight.airline
+  flightCode.value = flight.flightCode
+  arrivalTime.value = flight.arrivalTime
+  departureTime.value = flight.departureTime
+  flightDate.value = flight.flightDate
+  from.value = flight.from
+  to.value = flight.to
+  price.value = flight.price
+  status.value = flight.status
+  passengers.value = flight.passengers
+  createdAt.value = flight.createdAt
+  updatedAt.value = flight.updatedAt
 })
 const submit = async () => {
   await updateFlight(route.params.flightId, {
@@ -65,9 +60,13 @@ const submit = async () => {
   <div class="h-screen space-y-4 overflow-y-scroll p-6">
     <a href="/admin/bookings">
       <Button variant="outline" size="icon">
-        <span>&lt;</span>
-      </Button></a
-    >
+        <AnimatedIcon
+          :id="'back'"
+          :size="18"
+          class="text-accent"
+          target="a"
+        /> </Button
+    ></a>
     <div class="m-auto w-9/12 space-y-4">
       <Label class="block">Airline</Label>
       <Input v-model="airline" type="text" />

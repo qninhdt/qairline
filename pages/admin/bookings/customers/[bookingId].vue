@@ -14,9 +14,13 @@ import {
   <div class="p-6">
     <a href="/admin/bookings">
       <Button variant="outline" size="icon">
-        <span>&lt;</span>
-      </Button></a
-    >
+        <AnimatedIcon
+          :id="'back'"
+          :size="18"
+          class="text-accent"
+          target="a"
+        /> </Button
+    ></a>
     <Table class="mt-4 rounded-md bg-white shadow">
       <TableHeader>
         <TableRow>

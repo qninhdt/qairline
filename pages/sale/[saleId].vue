@@ -8,9 +8,11 @@
     />
     <div class="m-auto w-9/12 pb-[32px] pt-[60px]">
       <h1 class="text-[30px]">{{ sale.title }}</h1>
-      <h1>{{ sale.value }}</h1>
-      <h2>{{ sale.date }}</h2>
-      <img src="info.img" alt="" class="w-full rounded-lg object-cover" />
+      <h1>
+        -{{ sale.type_sale === 'option-one' ? sale.amount + '%' : sale.amount }}
+      </h1>
+      <h2>{{ sale.date.start }} - {{ sale.date.end }}</h2>
+      <img :src="sale.img" alt="" class="w-full rounded-lg object-cover" />
       <p>{{ sale.content }}</p>
     </div>
   </div>
