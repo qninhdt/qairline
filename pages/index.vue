@@ -126,21 +126,44 @@ const onChange = (swiper: any) => {
           <CarouselItem
             v-for="info in infos"
             :key="info.title"
-            class="md:basis-1/2 lg:basis-1/3"
+            class="cursor-pointer md:basis-1/2 lg:basis-1/3"
           >
-            <div class="rounded-lg bg-gray-100 p-4">
-              <img
-                :src="info.img"
-                alt=""
-                class="h-[200px] w-full rounded-lg object-cover"
-              />
-              <h3 class="text-[20px] font-semibold text-black">
-                {{ info.title }}
-              </h3>
-              <p class="text-black">
-                {{ info.date }}
-              </p>
-            </div>
+            <Dialog>
+              <DialogTrigger as-child>
+                <div class="rounded-lg bg-gray-100 p-4">
+                  <img
+                    :src="info.img"
+                    alt=""
+                    class="h-[200px] w-full rounded-lg object-cover"
+                  />
+                  <h3 class="text-[20px] font-semibold text-black">
+                    {{ info.title }}
+                  </h3>
+                  <p class="text-black">
+                    {{ info.date }}
+                  </p>
+                </div>
+              </DialogTrigger>
+              <DialogContent class="sm:max-w-md">
+                <ScrollArea class="max-h-[500px] p-3">
+                  <DialogHeader>
+                    <DialogTitle>{{ info.title }}</DialogTitle>
+                    <DialogDescription> {{ info.date }} </DialogDescription>
+                  </DialogHeader>
+                  <img
+                    :src="info.img"
+                    alt=""
+                    class="h-[200px] w-full rounded-lg object-cover"
+                  />
+                  <p>{{ info.content }}</p>
+                  <DialogFooter class="sm:justify-start">
+                    <DialogClose as-child>
+                      <Button type="button" variant="secondary"> Đóng </Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </ScrollArea>
+              </DialogContent>
+            </Dialog>
           </CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
@@ -150,7 +173,7 @@ const onChange = (swiper: any) => {
     <div class="m-auto w-9/12 pb-[32px] pt-[60px]">
       <Separator label="KHUYẾN MÃI" class="text-[30px]" />
       <Carousel
-        class="w-full pt-[40px]"
+        class="w-full cursor-pointer pt-[40px]"
         :opts="{
           align: 'start'
         }"
@@ -161,19 +184,44 @@ const onChange = (swiper: any) => {
             :key="sale.title"
             class="md:basis-1/2 lg:basis-1/3"
           >
-            <div class="rounded-lg bg-gray-100 p-4">
-              <img
-                :src="sale.img"
-                alt=""
-                class="h-[200px] w-full rounded-lg object-cover"
-              />
-              <h3 class="text-[20px] font-semibold text-black">
-                {{ sale.title }}
-              </h3>
-              <p class="text-black">
-                {{ sale.date.start }} - {{ sale.date.end }}
-              </p>
-            </div>
+            <Dialog>
+              <DialogTrigger as-child>
+                <div class="rounded-lg bg-gray-100 p-4">
+                  <img
+                    :src="sale.img"
+                    alt=""
+                    class="h-[200px] w-full rounded-lg object-cover"
+                  />
+                  <h3 class="text-[20px] font-semibold text-black">
+                    {{ sale.title }}
+                  </h3>
+                  <p class="text-black">
+                    {{ sale.date.start }} - {{ sale.date.end }}
+                  </p>
+                </div>
+              </DialogTrigger>
+              <DialogContent class="sm:max-w-md">
+                <ScrollArea class="max-h-[500px] p-3">
+                  <DialogHeader>
+                    <DialogTitle>{{ sale.title }}</DialogTitle>
+                    <DialogDescription>
+                      {{ sale.date.start }} - {{ sale.date.end }}
+                    </DialogDescription>
+                  </DialogHeader>
+                  <img
+                    :src="sale.img"
+                    alt=""
+                    class="h-[200px] w-full rounded-lg object-cover"
+                  />
+                  <p>{{ sale.content }}</p>
+                  <DialogFooter class="sm:justify-start">
+                    <DialogClose as-child>
+                      <Button type="button" variant="secondary"> Đóng </Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </ScrollArea>
+              </DialogContent>
+            </Dialog>
           </CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
