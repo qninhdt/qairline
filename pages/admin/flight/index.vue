@@ -9,6 +9,21 @@ export default {
     onMounted(async () => {
       flights.value = await getFlights() // Kiểm tra dữ liệu
       filterFlights()
+      // convert date to timestamp
+      for (let i = 0; i < flights.value.length; i++) {
+        flights.value[i].departureTime = new Date(
+          flights.value[i].departureTime
+        ).toLocaleString()
+        flights.value[i].arrivalTime = new Date(
+          flights.value[i].arrivalTime
+        ).toLocaleString()
+        flights.value[i].createdAt = new Date(
+          flights.value[i].createdAt
+        ).toLocaleString()
+        flights.value[i].updatedAt = new Date(
+          flights.value[i].updatedAt
+        ).toLocaleString()
+      }
     })
     const deleteFlight_ = async (id) => {
       await deleteFlight(id)
@@ -180,7 +195,7 @@ export default {
     <!--Nút thêm chuyến bay-->
     <div>
       <Button class="mb-6 block shadow">
-        <a href="/admin/bookings/add-flight">Thêm chuyến bay</a></Button
+        <a href="/admin/flight/add-flight">Thêm chuyến bay</a></Button
       >
     </div>
     <!-- Thông báo không tìm thấy -->

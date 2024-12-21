@@ -12,7 +12,7 @@ import {
 
 <template>
   <div class="p-6">
-    <a href="/admin/bookings">
+    <a href="/admin/flight">
       <Button variant="outline" size="icon">
         <AnimatedIcon
           :id="'back'"

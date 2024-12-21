@@ -119,7 +119,7 @@ const data = {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton as-child>
-                <router-link to="/admin/bookings" active-class="bg-muted">
+                <router-link to="/admin/flight" active-class="bg-muted">
                   <AnimatedIcon
                     :id="'travel_agency'"
                     :size="24"
