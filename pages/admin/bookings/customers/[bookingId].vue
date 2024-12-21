@@ -32,12 +32,22 @@ import {
       </TableHeader>
       <TableBody>
         <TableRow>
-          <TableCell class="font-medium"> Laser Lemonade Machine </TableCell>
-          <TableCell>
-            <Badge variant="outline"> Draft </Badge>
-          </TableCell>
-          <TableCell> $499.99 </TableCell>
-          <TableCell> 25 </TableCell>
+          <TableCell class="font-medium"> Hoàng Anh </TableCell>
+          <TableCell class="font-medium"> Nguyễn </TableCell>
+          <TableCell> hoanganhnguyen.knk@gmail.com </TableCell>
+          <TableCell> 19/12/2024 </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell class="font-medium"> Nguyễn Thị Cát </TableCell>
+          <TableCell class="font-medium"> Tường </TableCell>
+          <TableCell> 22022107@vnu.edu.vn </TableCell>
+          <TableCell> 19/12/2024 </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell class="font-medium"> XYZ </TableCell>
+          <TableCell class="font-medium"> ABC </TableCell>
+          <TableCell> xyz@gmail.com </TableCell>
+          <TableCell> 21/12/2024 </TableCell>
         </TableRow>
       </TableBody>
     </Table>
