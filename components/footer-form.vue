@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-4 bg-muted pt-5">
+  <div class="mt-8 space-y-4 bg-muted pt-5 text-muted-foreground">
     <div class="m-auto flex items-center justify-center gap-2 px-4">
       <QAirlineLogo />
       <Separator orientation="vertical" class="mr-2 h-4" />
