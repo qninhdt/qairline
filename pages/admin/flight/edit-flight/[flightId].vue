@@ -6,16 +6,17 @@ import {
   getFlightById,
   updateFlight
 } from '../../../../core/firebase'
-const airline = ref('')
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
+const plane = ref('')
 const flightCode = ref('')
-const departureTime = ref('')
-const arrivalTime = ref('')
-const flightDate = ref('')
+const date = ref()
 const from = ref('')
 const to = ref('')
 const price = ref('')
 const status = ref('')
 const passengers = ref('')
+const createdAt = ref('')
 
 const { toast } = useToast()
 const route = useRoute()
@@ -28,51 +29,44 @@ onMounted(async () => {
 })
 onMounted(async () => {
   const flight: any = await getFlightById(route.params.flightId)
-  airline.value = flight.airline
+  plane.value = flight.plane
   flightCode.value = flight.flightCode
-  arrivalTime.value = flight.arrivalTime
-  departureTime.value = flight.departureTime
-  flightDate.value = flight.flightDate
+  date.value = [new Date(flight.departureTime), new Date(flight.arrivalTime)]
   from.value = flight.from
   to.value = flight.to
   price.value = flight.price
   status.value = flight.status
   passengers.value = flight.passengers
+  createdAt.value = flight.createdAt
 })
 const submit = async () => {
-  const formatDate = (date) => {
-    const d = new Date(date)
-    const day = String(d.getDate()).padStart(2, '0')
-    const month = String(d.getMonth() + 1).padStart(2, '0')
-    const year = d.getFullYear()
-    return `${day}/${month}/${year}`
-  }
+  const arrivalTime = date.value[1].getTime()
+  const departureTime = date.value[0].getTime()
   await updateFlight(route.params.flightId, {
-    airline: airline.value,
+    plane: plane.value,
     flightCode: flightCode.value,
-    arrivalTime: arrivalTime.value,
-    departureTime: departureTime.value,
-    flightDate: formatDate(flightDate.value),
+    arrivalTime: arrivalTime,
+    departureTime: departureTime,
     from: from.value,
     to: to.value,
     price: price.value,
     status: status.value,
     passengers: passengers.value,
-    createdAt: formatDate(new Date()),
-    updatedAt: formatDate(new Date())
+    createdAt: createdAt.value,
+    updatedAt: new Date().getTime()
   })
 
   toast({
     title: 'Chuyến bay đã được sửa'
   })
 
-  router.push('/admin/bookings')
+  router.push('/admin/flight')
 }
 </script>
 
 <template>
   <div class="h-screen space-y-4 overflow-y-scroll p-6">
-    <a href="/admin/bookings">
+    <a href="/admin/flight">
       <Button variant="outline" size="icon">
         <AnimatedIcon
           :id="'back'"
@@ -82,14 +76,14 @@ const submit = async () => {
         /> </Button
     ></a>
     <div class="m-auto w-9/12 space-y-4">
-      <Label class="block">Tàu bay</Label>
-      <Select v-model="airline">
+      <Label class="block">Máy bay</Label>
+      <Select v-model="plane">
         <SelectTrigger>
-          <SelectValue placeholder="Chọn tàu bay" />
+          <SelectValue placeholder="Chọn máy bay" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Tàu bay</SelectLabel>
+            <SelectLabel>Máy bay</SelectLabel>
             <SelectItem
               v-for="plane in planes"
               :key="plane.id"
@@ -102,12 +96,13 @@ const submit = async () => {
       </Select>
       <Label class="block">Mã chuyến bay</Label>
       <Input v-model="flightCode" type="text" />
-      <Label class="block">Thời gian xuất phát</Label>
-      <Input v-model="departureTime" type="text" />
-      <Label class="block">Thời gian đến</Label>
-      <Input v-model="arrivalTime" type="text" />
-      <Label class="block">Ngày bay</Label>
-      <Input v-model="flightDate" type="text" />
+      <Label class="block">Thời gian đi/đến</Label>
+      <VueDatePicker
+        v-model="date"
+        class="rounded-sm border-[1px] border-primary p-[2px]"
+        range
+        multi-calendars
+      />
       <Label class="block">Từ</Label>
       <Select v-model="from">
         <SelectTrigger>
@@ -164,7 +159,7 @@ const submit = async () => {
         </SelectContent>
       </Select>
       <Button class="mr-4 mt-4" @click="submit">Lưu</Button>
-      <a href="/admin/bookings"
+      <a href="/admin/flight"
         ><Button class="mt-4" variant="secondary">Hủy</Button></a
       >
     </div>

@@ -371,3 +371,14 @@ export async function updateBooking(id: string, booking: any) {
     throw error
   }
 }
+
+export async function getAllCites() {
+  const querySnapshot = await getDocs(airportsRef)
+  return querySnapshot.docs.map((doc) => {
+    const d = doc.data()
+    return {
+      name: d.city,
+      code: d.code
+    }
+  })
+}

@@ -8,6 +8,12 @@ import { Check, Circle, Dot } from 'lucide-vue-next'
 import { h, ref } from 'vue'
 import * as z from 'zod'
 
+const route = useRoute()
+const from = ref()
+const to = ref()
+const date = ref()
+const classType = ref('economy')
+
 const days = [
   null,
   null,
@@ -144,6 +150,14 @@ function onSubmit(values: any) {
     )
   })
 }
+
+onMounted(async () => {
+  const timestamp = route.query.date
+  date.value = new Date(parseInt(timestamp as string))
+  from.value = route.query.from as string
+  to.value = route.query.to as string
+  classType.value = route.query.classType as string
+})
 </script>
 
 <template>
@@ -175,7 +189,12 @@ function onSubmit(values: any) {
         </div>
       </div>
       <div class="w-full px-6">
-        <div class="w-full lg:w-fit"><LocationSelect /></div>
+        <div class="w-full lg:w-fit">
+          <LocationSelect
+            v-model:from="route.query.from"
+            v-model:to="route.query.to"
+          />
+        </div>
 
         <!-- image -->
         <div
@@ -230,10 +249,14 @@ function onSubmit(values: any) {
           </div>
         </div>
 
-        <Tabs default-value="account" class="mb-8 mt-4 w-full">
+        <Tabs
+          v-model="classType"
+          default-value="account"
+          class="mb-8 mt-4 w-full"
+        >
           <TabsList class="grid w-full grid-cols-2">
-            <TabsTrigger value="account"> Phổ thông </TabsTrigger>
-            <TabsTrigger value="password"> Thương gia </TabsTrigger>
+            <TabsTrigger value="economy"> Phổ thông </TabsTrigger>
+            <TabsTrigger value="business"> Thương gia </TabsTrigger>
           </TabsList>
         </Tabs>
 

@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-  DateFormatter,
-  type DateValue,
-  getLocalTimeZone
-} from '@internationalized/date'
+import { DateFormatter, getLocalTimeZone } from '@internationalized/date'
 
 import { ref } from 'vue'
 
@@ -11,9 +7,28 @@ const df = new DateFormatter('vi-VN', {
   dateStyle: 'long'
 })
 
-const value = ref<DateValue>()
-
+const router = useRouter()
+const date = ref()
+const from = ref('')
+const to = ref('')
 const classType = ref('economy')
+
+const search = () => {
+  if (!from.value || !to.value || !date.value) {
+    return
+  }
+
+  // convert date to timestamp
+  const timestamp = date.value.toDate(getLocalTimeZone()).getTime()
+  const query = {
+    from: from.value,
+    to: to.value,
+    classType: classType.value,
+    date: timestamp
+  }
+  const encodedQuery = new URLSearchParams(query).toString()
+  router.push(`/booking?${encodedQuery}`)
+}
 </script>
 
 <template>
@@ -41,7 +56,7 @@ const classType = ref('economy')
     <div
       class="flex flex-col space-y-4 rounded-bl-xl rounded-br-xl border-2 border-solid border-primary bg-background p-4 lg:flex-row lg:space-x-4 lg:space-y-0 lg:rounded-tr-xl"
     >
-      <LocationSelect />
+      <LocationSelect v-model:from="from" v-model:to="to" />
       <div class="hidden w-[2px] bg-primary lg:block"></div>
       <!-- depart -->
       <div class="flex space-x-2">
@@ -57,20 +72,20 @@ const classType = ref('economy')
                 class="w-full justify-start text-left font-normal lg:w-[200px]"
               >
                 {{
-                  value
-                    ? df.format(value.toDate(getLocalTimeZone()))
+                  date
+                    ? df.format(date.toDate(getLocalTimeZone()))
                     : 'Chọn ngày đi'
                 }}
               </Button>
             </PopoverTrigger>
             <PopoverContent class="w-auto p-0">
-              <Calendar v-model="value" initial-focus />
+              <Calendar v-model="date" initial-focus />
             </PopoverContent>
           </Popover>
         </div>
       </div>
       <!-- search -->
-      <Button class="w-full lg:h-[70px] lg:w-[70px]">
+      <Button class="w-full lg:h-[70px] lg:w-[70px]" @click="search">
         <AnimatedIcon id="search" :size="24" target="button" color="white" />
         <span class="inline-block lg:hidden">Tìm kiếm</span>
       </Button>

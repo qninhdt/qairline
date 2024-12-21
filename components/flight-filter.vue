@@ -64,7 +64,7 @@ const priceToStr = (price: number) => {
       </div>
     </div>
     <div class="mb-8">
-      <Separator label="Khuyễn mãi / Ưu đãi" class="mb-4" />
+      <Separator label="Khuyễn mãi" class="mb-4" />
       <div class="px-8">
         <div>
           <div class="mb-2 flex items-center space-x-2">

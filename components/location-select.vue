@@ -1,11 +1,13 @@
 <script setup lang="ts">
-const cities = [
-  'Hà Nội',
-  'New York, Mỹ',
-  'Paris, Pháp',
-  'Bangkok, Thái Lan',
-  'Bắc Kinh, Trung Quốc'
-]
+import { getAllCites } from '../core/firebase'
+
+const from: any = defineModel('from')
+const to: any = defineModel('to')
+const cities: any = ref([])
+
+onMounted(async () => {
+  cities.value = await getAllCites()
+})
 </script>
 <template>
   <!-- from -->
@@ -15,18 +17,18 @@ const cities = [
         <AnimatedIcon id="location" :size="24" />
         <span class="text-sm text-muted-foreground">Điểm đi</span>
       </div>
-      <Select>
+      <Select v-model="from">
         <SelectTrigger class="lg:w-[200px]">
           <SelectValue placeholder="Chọn điểm đi" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectItem
-              v-for="(city, index) in cities"
-              :key="index"
-              :value="city"
+              v-for="city in cities"
+              :key="city.code"
+              :value="city.code"
             >
-              <b>{{ city }}</b>
+              <b>{{ city.name }}</b>
             </SelectItem>
           </SelectGroup>
         </SelectContent>
@@ -43,18 +45,18 @@ const cities = [
         <AnimatedIcon id="location" :size="24" />
         <span class="text-sm text-muted-foreground">Điểm đi</span>
       </div>
-      <Select>
+      <Select v-model="to">
         <SelectTrigger class="lg:w-[200px]">
           <SelectValue placeholder="Chọn điểm đến" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectItem
-              v-for="(city, index) in cities"
-              :key="index"
-              :value="city"
+              v-for="city in cities"
+              :key="city.code"
+              :value="city.code"
             >
-              <b>{{ city }}</b>
+              <b>{{ city.name }}</b>
             </SelectItem>
           </SelectGroup>
         </SelectContent>
