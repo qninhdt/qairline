@@ -9,7 +9,7 @@
     <div class="m-auto w-9/12 pb-[32px] pt-[60px]">
       <h1 class="text-[30px]">{{ info.title }}</h1>
       <h2>{{ info.date }}</h2>
-      <img src="info.img" alt="" class="w-full rounded-lg object-cover" />
+      <img :src="info.img" alt="" class="w-full rounded-lg object-cover" />
       <p>{{ info.content }}</p>
     </div>
   </div>

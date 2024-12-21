@@ -18,6 +18,19 @@ import {
 } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 
+import { getInfos, getSales } from '../core/firebase'
+
+const infos = ref([])
+const sales = ref([])
+
+onMounted(async () => {
+  infos.value = await getInfos()
+})
+
+onMounted(async () => {
+  sales.value = await getSales()
+})
+
 const plugin = Autoplay({
   delay: 2000,
   stopOnMouseEnter: true,
@@ -104,28 +117,28 @@ const onChange = (swiper: any) => {
     <div class="m-auto w-9/12 pb-[32px] pt-[100px]">
       <Separator label="TIN TỨC" class="text-[30px]" />
       <Carousel
-        class="w-full"
+        class="w-full pt-[40px]"
         :opts="{
           align: 'start'
         }"
       >
         <CarouselContent>
           <CarouselItem
-            v-for="post in posts"
-            :key="post.title"
+            v-for="info in infos"
+            :key="info.title"
             class="md:basis-1/2 lg:basis-1/3"
           >
             <div class="rounded-lg bg-gray-100 p-4">
               <img
-                :src="post.image"
+                :src="info.img"
                 alt=""
                 class="h-[200px] w-full rounded-lg object-cover"
               />
               <h3 class="text-[20px] font-semibold text-black">
-                {{ post.title }}
+                {{ info.title }}
               </h3>
               <p class="text-black">
-                {{ post.date }}
+                {{ info.date }}
               </p>
             </div>
           </CarouselItem>
@@ -137,7 +150,7 @@ const onChange = (swiper: any) => {
     <div class="m-auto w-9/12 pb-[32px] pt-[60px]">
       <Separator label="KHUYẾN MÃI" class="text-[30px]" />
       <Carousel
-        class="w-full"
+        class="w-full pt-[40px]"
         :opts="{
           align: 'start'
         }"
@@ -150,7 +163,7 @@ const onChange = (swiper: any) => {
           >
             <div class="rounded-lg bg-gray-100 p-4">
               <img
-                :src="sale.image"
+                :src="sale.img"
                 alt=""
                 class="h-[200px] w-full rounded-lg object-cover"
               />
@@ -158,7 +171,7 @@ const onChange = (swiper: any) => {
                 {{ sale.title }}
               </h3>
               <p class="text-black">
-                {{ sale.date }}
+                {{ sale.date.start }} - {{ sale.date.end }}
               </p>
             </div>
           </CarouselItem>

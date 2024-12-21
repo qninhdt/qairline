@@ -46,9 +46,13 @@ const submit = async () => {
   <div class="h-screen space-y-4 overflow-y-scroll p-6">
     <a href="/admin/bookings">
       <Button variant="outline" size="icon">
-        <span>&lt;</span>
-      </Button></a
-    >
+        <AnimatedIcon
+          :id="'back'"
+          :size="18"
+          class="text-accent"
+          target="a"
+        /> </Button
+    ></a>
     <div class="m-auto w-9/12 space-y-4">
       <Label class="block">Airline</Label>
       <Input v-model="airline" type="text" />

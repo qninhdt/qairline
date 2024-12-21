@@ -1,7 +1,6 @@
 <script>
 import FlightCard from './components/FlightCard.vue'
 import { deleteFlight, getFlights } from '../../../core/firebase'
-import { MoreHorizontal } from 'lucide-vue-next'
 import { useToast } from '../../../components/ui/toast'
 export default {
   components: { FlightCard },
@@ -144,7 +143,7 @@ export default {
           class="rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
           @change="filterFlights"
         >
-          <option value="">Tất cả điểm đi</option>
+          <option value="">Tất cả điểm đến</option>
           <option
             v-for="location in toLocations"
             :key="location"
@@ -161,7 +160,7 @@ export default {
           v-model.number="filters.minPrice"
           type="number"
           placeholder="Giá tối thiểu"
-          class="w-[120px] rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-[130px] rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           @input="filterFlights"
         />
       </div>

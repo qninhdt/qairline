@@ -80,11 +80,11 @@
 
     <!-- Buttons: Xóa và Sửa -->
     <div v-if="!showEditForm" class="flex justify-end space-x-4">
-      <Button class="rounded-lg px-4 py-2 text-white" @click="deleteFlight_()">
+      <Button class="rounded-lg px-4 py-2 text-white" @click="deleteFlight()">
         Xóa
       </Button>
       <Button class="rounded-lg px-4 py-2 text-white">
-        <a :href="`/admin/bookings/edit-flight/${flight.id}`" class="w-full"
+        <a href="/admin/bookings/edit-flight/${flight.id}" class="w-full"
           >Sửa</a
         >
       </Button>
@@ -93,10 +93,6 @@
 </template>
 
 <script>
-import { deleteFlight, flightsRef, getFlights } from '../core/firebase'
-import { useToast } from '../components/ui/toast'
-import { set } from 'vue-demi'
-const { toast } = useToast()
 export default {
   props: {
     flight: {
@@ -109,7 +105,7 @@ export default {
     }
   },
   methods: {
-    deleteFlight_() {
+    deleteFlight() {
       this.deleteFlight_(this.flight.id)
     }
   }

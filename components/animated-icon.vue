@@ -54,7 +54,8 @@ const ID_TO_LORDICON_ID: Record<string, string> = {
   documents: 'kzhwlhxg',
   travel_agency: 'wvpcnsph',
   sun: 'jyoxpoml',
-  moon: 'atcauaaj'
+  moon: 'atcauaaj',
+  back: 'fgqeoozn'
 }
 
 const iconStyle = computed(() => ({
