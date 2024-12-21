@@ -119,9 +119,9 @@ const submit = async () => {
             <SelectItem
               v-for="airport in airports"
               :key="airport.id"
-              :value="airport.name"
+              :value="airport.city"
             >
-              {{ airport.name }}
+              {{ airport.city }}
             </SelectItem>
           </SelectGroup>
         </SelectContent>
@@ -138,9 +138,9 @@ const submit = async () => {
             <SelectItem
               v-for="airport in airports"
               :key="airport.id"
-              :value="airport.name"
+              :value="airport.city"
             >
-              {{ airport.name }}
+              {{ airport.city }}
             </SelectItem>
           </SelectGroup>
         </SelectContent>
