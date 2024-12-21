@@ -43,7 +43,7 @@ onMounted(async () => {
     <div class="w-[50%]">
       <div class="mb-2 flex items-center">
         <AnimatedIcon id="location" :size="24" />
-        <span class="text-sm text-muted-foreground">Điểm đi</span>
+        <span class="text-sm text-muted-foreground">Điểm đến</span>
       </div>
       <Select v-model="to">
         <SelectTrigger class="lg:w-[200px]">
