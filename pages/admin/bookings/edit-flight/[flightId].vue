@@ -163,8 +163,6 @@ const submit = async () => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Label class="block">Số hành khách</Label>
-      <Input v-model="passengers" type="text" />
       <Button class="mr-4 mt-4" @click="submit">Lưu</Button>
       <a href="/admin/bookings"
         ><Button class="mt-4" variant="secondary">Hủy</Button></a
